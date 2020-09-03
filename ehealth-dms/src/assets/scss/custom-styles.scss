@@ -1,0 +1,77 @@
+.icon-styles {
+  font-size: 25px;
+  padding: 5px 10px;
+}
+.list-styles {
+  padding-left: 5px 0;
+}
+.collapsed-drawer {
+  padding-left: 1rem;
+}
+
+.sub-items {
+  padding-left: 3.75rem;
+}
+
+.list-label {
+  font-weight: 500 !important;
+  color: #45526e !important;
+}
+.header-title {
+  font-size: 1.25rem;
+  font-weight: 700 !important;
+  color: #59698d;
+}
+.collapse-label {
+  color: #7283a7  !important;
+  font-size: 0.90rem;
+}
+// loader css
+#loader {
+    transition: all 0.5s ease-in-out;
+    opacity: 1;
+    visibility: visible;
+    position: fixed;
+    background: #fff;
+    z-index: 90000;
+  }
+  .centered {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  #loader.fadeOut {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .spinner {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+    background-color: #4caf50;
+    border-radius: 100%;
+    -webkit-animation: sk-scaleout 1.5s infinite ease-in-out;
+    animation: sk-scaleout 1.5s infinite ease-in-out;
+  }
+  @-webkit-keyframes sk-scaleout {
+    0% { -webkit-transform: scale(0) }
+    100% {
+      -webkit-transform: scale(2.0);
+      opacity: 0;
+    }
+  }
+  @keyframes sk-scaleout {
+    0% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    } 100% {
+      -webkit-transform: scale(2.0);
+      transform: scale(2.0);
+      opacity: 0;
+    }
+  }
