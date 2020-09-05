@@ -1,4 +1,5 @@
 import { makeStyles, fade } from '@material-ui/core/styles';
+import blueGrey from '@material-ui/core/colors/blueGrey';
 
 const drawerWidth = 240;
 
@@ -6,38 +7,45 @@ const drawerWidth = 240;
     root: {
       display: 'flex',
     },
+    background: { 
+      backgroundColor: blueGrey[800], 
+      color: 'white'
+    },
+    iconColor: { color: 'white', fontSize: 25 },
     grow: {
       flexGrow: 1,
     },
     appBar: {
+      [theme.breakpoints.up('sm')]: {
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
+    }
     },
     appBarShift: {
+      [theme.breakpoints.up('sm')]: {
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
+    }
     },
     menuButton: {
-      marginRight: 36,
+      marginRight: 36
     },
     hide: {
       display: 'none',
     },
     drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
-      whiteSpace: 'nowrap',
-    },
-    label: {
-      fontWeight: 400,
-      color:' #45526e',
+      [theme.breakpoints.up('sm')]: {
+        width: drawerWidth,
+        flexShrink: 0,
+        whiteSpace: 'nowrap',
+      },
     },
     drawerOpen: {
       width: drawerWidth,
@@ -56,6 +64,21 @@ const drawerWidth = 240;
       [theme.breakpoints.up('sm')]: {
         width: theme.spacing(9) + 1,
       },
+      [theme.breakpoints.down('sm')]: {
+        width: 0,
+        backgroundColor: 'white'
+      },
+    },
+    toolbar: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      padding: theme.spacing(0, 1),
+      ...theme.mixins.toolbar,
+    },
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(3),
     },
     title: {
       display: 'none',

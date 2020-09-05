@@ -1,11 +1,6 @@
 import React from 'react';
 import 
 { 
-    Grow, 
-    Paper, 
-    Popper, 
-    ClickAwayListener, 
-    MenuList,
     MenuItem, 
     Menu, 
     Badge, 
@@ -15,36 +10,17 @@ from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
-export function renderMenu (popOpen, anchorRef, handleListKeyDown, handlePopClose) {
-    return <Popper open={popOpen} anchorEl={anchorRef.current} role={undefined} transition disablePortal onKeyDown={handleListKeyDown}>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handlePopClose}>
-                  <MenuList autoFocusItem={popOpen} id="menu-list-grow">
-                    <MenuItem onClick={handlePopClose}>Profile</MenuItem>
-                    <MenuItem onClick={handlePopClose}>My account</MenuItem>
-                    <MenuItem onClick={handlePopClose}>Logout</MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-};
-
-export function renderMobileMenu(mobileMenuId, mobileMoreAnchorEl, isMobileMenuOpen, handleMobileMenuClose, handleProfileMenuOpen) {
+export function RenderMobileMenu(props) {
     return <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
+      anchorEl={props.mobileMoreAnchorEl}
+      elevation={0}
+      getContentAnchorEl={null}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      id={props.mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
+      transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+      open={props.isMobileMenuOpen}
+      onClose={props.onClose}
     >
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
@@ -54,7 +30,7 @@ export function renderMobileMenu(mobileMenuId, mobileMoreAnchorEl, isMobileMenuO
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem onClick={props.onMenuOpen} style={{paddingTop: 0}}>
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"

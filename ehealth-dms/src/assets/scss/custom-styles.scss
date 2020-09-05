@@ -15,17 +15,18 @@
 
 .list-label {
   font-weight: 500 !important;
-  color: #45526e !important;
 }
 .header-title {
+  // margin-top: 1rem;
+  margin-bottom: 0 !important;
+  padding: 20px !important;
   font-size: 1.25rem;
   font-weight: 700 !important;
-  color: #59698d;
 }
 .collapse-label {
-  color: #7283a7  !important;
   font-size: 0.90rem;
 }
+
 // loader css
 #loader {
     transition: all 0.5s ease-in-out;

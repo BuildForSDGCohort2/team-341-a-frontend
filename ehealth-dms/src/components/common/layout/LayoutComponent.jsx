@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect } from 'react';
+import React, {useState } from 'react';
 import clsx from 'clsx';
 import {
   useTheme,
@@ -7,7 +7,6 @@ import {
   Toolbar,
   List,
   Typography,
-  Divider,
   IconButton,
   ListItem,
   ListItemText,
@@ -29,68 +28,60 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { Link as RouterLink } from 'react-router-dom';
 import { Usestyles } from 'components';
-import { renderMenu, renderMobileMenu } from 'components';
+import { RenderMobileMenu, CustomizedMenus } from 'components';
+import Header from './Header';
 
 export default function LayoutComponent(props) {
   const classes = Usestyles();
   const theme = useTheme();
-  const [open, setOpen] = useState(true);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const anchorRef = useRef(null);
-  const [popOpen, setPopOpen] = useState(false);
+  const [openDrawer, setDrawerOpen] = useState(true);
   const [toggleClass, handleToggleClass] = useState('icon-styles');
   const [expanded, setExpansion] = useState(false);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl); 
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  
+  const subMenu = [
+    {color: '#1976d2', icon: 'person_search', text: 'Profile'},
+    {color: '#007E33', icon: 'settings', text: 'Settings'},
+    {color: '#ff4444', icon: 'power_settings_new', text: 'Logout'}
+  ]
+
   const menuId = 'primary-search-account-menu';
   const mobileMenuId = 'primary-search-account-menu-mobile';
 
   const handleExpansion = (name) => {
-    if(open)
+    if(openDrawer)
      setExpansion(expanded === name ? false : name);
   }
 
-  const handleProfileMenuOpen = () => {
-    setPopOpen((prevOpen) => !prevOpen);
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
+    handleToggleClass('icon-styles');
+  };
+
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+    handleToggleClass('collapsed-drawer');
+    setExpansion(false);
+  };
+
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleListKeyDown = (event) => {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setPopOpen(false);
-    }
-  }
-  const handlePopClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-    setPopOpen(false);
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
   };
-
-  const prevOpen = useRef(popOpen);
-  useEffect(() => {
-    if (prevOpen.current === true && popOpen === false) {
-      anchorRef.current.focus();
-    }
-    prevOpen.current = popOpen;
-  }, [popOpen]);
-
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
-  };
-  const handleDrawerOpen = () => {
-    setOpen(true);
-    handleToggleClass('icon-styles');
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-    handleToggleClass('collapsed-drawer');
-    setExpansion(false);
   };
 
   const children = (child, parent) => {
@@ -116,98 +107,46 @@ export default function LayoutComponent(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar 
-       position="fixed"
-       className={clsx(classes.appBar, {
-         [classes.appBarShift]: open,
-       })}
-      >
-        <Toolbar>
-        <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Team 341-A
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-              ref={anchorRef}
-              aria-controls={popOpen ? 'menu-list-grow' : undefined}
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu(mobileMenuId, mobileMoreAnchorEl, isMobileMenuOpen, handleMobileMenuClose, handleProfileMenuOpen)}
-      {renderMenu(popOpen, anchorRef, handleListKeyDown, handlePopClose)}
-
+      <Header
+        onDrawerOpen={handleDrawerOpen}
+        onProfileMenuOpen={handleProfileMenuOpen}
+        mobileMenuId={mobileMenuId}
+        onMobileMenuOpen={handleMobileMenuOpen}
+        openDrawer={openDrawer}
+        menuId={menuId}
+      />
+      <RenderMobileMenu
+        mobileMenuId={mobileMenuId}
+        mobileMoreAnchorEl={mobileMoreAnchorEl}
+        isMobileMenuOpen={isMobileMenuOpen}
+        onClose={handleMobileMenuClose}
+        onMenuOpen={handleProfileMenuOpen}
+      />
+      <CustomizedMenus
+        anchorEl={anchorEl}
+        handleClose={handleMenuClose}
+        listItems={subMenu}
+      />
       <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
+        variant= "permanent"
+        className={clsx(classes.drawer, classes.background, {
+          [classes.drawerOpen]: openDrawer,
+          [classes.drawerClose]: !openDrawer,
         })}
         classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
+          paper: clsx(classes.background, {
+            [classes.drawerOpen]: openDrawer,
+            [classes.drawerClose]: !openDrawer,
           }),
         }}
       >
         <div className={classes.toolbar}>
+        <span className="header-title">Hospital Name</span>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? <ChevronRightIcon className={classes.iconColor} /> : <ChevronLeftIcon className={classes.iconColor} />}
           </IconButton>
-          <span className="header-title">Hospital Name</span>
         </div>
-        <Divider />
-       
-        <List>
+        <List style={{paddingTop: 0 }}>
         {props.routes.map((prop, key) => {
             if (prop.redirect) return null;
             if (prop.type === "child") return null;
@@ -216,6 +155,7 @@ export default function LayoutComponent(props) {
                   <li
                     key={key}
                     onClick={() => handleExpansion(prop.name)}
+                    className="nav-link"
                   >
                     <ListItem button >
                       <Icon className="icon-styles" style={{ color: prop.color }}>{prop.icon}</Icon>
@@ -228,7 +168,6 @@ export default function LayoutComponent(props) {
                     </Collapse>
                   </li>
                 )
-
               return (
                 <li
                 key={key}
