@@ -32,11 +32,13 @@ import EditLabResult from 'views/laboratory/EditLabResult.jsx';
 
 import AddMedicine from 'views/medicine/AddMedicine.jsx';
 import EditMedicine from 'views/medicine/EditMedicine.jsx';
+import Map from 'views/map/Map.jsx';
 
 var eHealthRoutes = [
   {path: "/app/dashboard", name: "Dashboard", icon: "speed", color: "#ffcdd2", badge: "", component: Dashboard},
+  {path: "/app/map", name: "Map", icon: "near_me", color: "#fff176", badge: "", component: Map},
   {
-    path: "#", name: "Hospital", icon: "local_hospital", type: "dropdown", color: "#69f0ae", parentid: "hospital", open: false,
+    path: "#", name: "Hospital", icon: "local_hospital", type: "dropdown", color: "#69f0ae", parentid: "hospital",
     child: [
       {path: "/app/hospital", name: "Hospital"},
       {path: "/app/add-employee", name: "Register Employee"},
@@ -66,7 +68,7 @@ var eHealthRoutes = [
   {path: "/app/add-room", component: AddRoom, type: "child"},
   {path: "/app/edit-room", component: EditRoom, type: "child"},
   {
-    path: "#", name: "Patients", icon: "supervisor_account", color: "#90caf9", type: "dropdown", parentid: "patient", open: false,
+    path: "#", name: "Patients", icon: "supervisor_account", color: "#90caf9", type: "dropdown", parentid: "patient",
     child: [
       {path: "/app/patient", name: "Patient"},
       {path: "/app/register-patient", name: "Register Patient"}, 
@@ -91,7 +93,7 @@ var eHealthRoutes = [
   {path: "/app/edit-discharge-patient", component: EditDischargePatient, type: "child"},
   {path: "/app/patient-profile", component: PatientProfile, type: "child"},
   {
-    path: "#", name: "Laboratory", icon: "biotech", color: "#b2dfdb", type: "dropdown", parentid: "laboratory", open: false,
+    path: "#", name: "Laboratory", icon: "biotech", color: "#b2dfdb", type: "dropdown", parentid: "laboratory",
     child: [
       {path: "/app/patient-lab-result", name: "Lab Analysis"},
       {path: "/app/edit-lab-result", name: "Edit Lab Result"}, 
@@ -100,7 +102,7 @@ var eHealthRoutes = [
   {path: "/app/patient-lab-result", component: LabResult, type: "child"},
   {path: "/app/edit-lab-result",  component: EditLabResult, type: "child"},
   {
-  path: "#", name: "Inventory", icon: "add_shopping_cart", color: "#b1bace ", type: "dropdown", parentid: "assets", open: false,
+  path: "#", name: "Inventory", icon: "add_shopping_cart", color: "#b1bace ", type: "dropdown", parentid: "assets",
     child: [
       {path: "/app/add-medicine", name: "New Medicine"},
       {path: "/app/edit-medicine", name: "Edit Medicine"},
