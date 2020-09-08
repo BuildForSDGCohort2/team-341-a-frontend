@@ -144,7 +144,7 @@ const drawerWidth = 240;
     formPaper: {
       marginTop: theme.spacing(8),
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: "column",
       alignItems: 'center',
     },
     avatar: {
