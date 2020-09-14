@@ -7,7 +7,7 @@ import {
   TextField,
   Button,
 } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import { Usestyles } from 'components';
 class AddRoom extends Component {
   render() {
@@ -26,7 +26,7 @@ function NewRoom() {
     <Container component="main" maxWidth="xs">
       <div className={classes.formPaper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <MeetingRoomIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Add a new Room
@@ -34,38 +34,16 @@ function NewRoom() {
 
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
-                id="lastName"
-                label="Room Head"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="phone"
-                label="Phone"
-                type="Phone"
-                id="phone"
-                autoComplete="current-phone"
+                id="rid"
+                label="Room ID"
+                type="text"
+                name="rid"
+                autoComplete="rid"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -75,10 +53,34 @@ function NewRoom() {
                 variant="outlined"
                 required
                 fullWidth
-                type="Number"
+                type="number"
                 id="rno"
                 label="Room Number"
                 autoFocus
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="pid"
+                label="Patient ID"
+                type="text"
+                name="pid"
+                autoComplete="pid"
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="wid"
+                label="Ward ID"
+                type="text"
+                id="wid"
+                autoComplete="current-wid"
               />
             </Grid>
           </Grid>

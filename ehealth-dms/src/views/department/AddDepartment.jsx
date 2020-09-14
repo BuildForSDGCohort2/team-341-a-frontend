@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Avatar, Typography, Grid, TextField, Button, Checkbox, FormControlLabel } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { Container, Avatar, Typography, Grid, TextField, Button } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import { Usestyles } from 'components';
 
 
@@ -25,7 +24,7 @@ function NewDepartment() {
     <Container component="main" maxWidth="xs">
       <div className={classes.formPaper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <AddIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Add a new Department
@@ -45,15 +44,27 @@ function NewDepartment() {
                 autoFocus
               />
             </Grid>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={6}>
             <TextField
                 variant="outlined"
                 required
                 fullWidth
-                id="lastName"
-                label="Head of Department"
-                name="lastName"
-                autoComplete="lname"
+                id="did"
+                label="ID"
+                name="id"
+                autoComplete="did"
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="hid"
+                label="Hospital ID"
+                type="hid"
+                id="hid"
+                autoComplete="current-phone"
               />
             </Grid>
             <Grid item xs={12}>
@@ -62,21 +73,9 @@ function NewDepartment() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="phone"
-                label="Phone"
-                type="phone"
-                id="phone"
-                autoComplete="current-phone"
+                label="Description"
+                name="description"
+                autoComplete="description"
               />
             </Grid>
           </Grid>
