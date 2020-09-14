@@ -1,3 +1,56 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+.full-width {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  height: 100%;
+  background-color: #ff5722 !important;
+}
+.footer-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #929fba;
+  padding: 14px 0;
+  z-index: 1000;
+  .footer-display {
+    background-color: #929fba;
+    padding: 14px 0;
+  }
+  .copyright {
+    background-color: #929fba;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    font-size: 1rem;font-weight: 600;
+    color: #ffff;
+    a {
+      color: #ec407a;
+    }
+  }
+}
+
+.bgimg {
+  // flex: 1;
+  background: url("/images/healthImages/francisco-venancio-M4Xloxsg0Gw-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+  min-height: 100vh;
+  align-items: center !important;
+}
+.text-content {
+  padding-left: 10px !important;
+  width: 50%;
+  h5 {
+    color: #1C2331;
+    font-size: 1rem;
+  }
+}
 .icon-styles {
   font-size: 25px;
   padding: 5px 10px;
@@ -8,7 +61,9 @@
 .collapsed-drawer {
   padding-left: 1rem;
 }
-
+.bgc {
+  background-color: red;
+}
 .sub-items {
   padding-left: 3.75rem;
 }
@@ -26,7 +81,15 @@
 .collapse-label {
   font-size: 0.90rem;
 }
-
+.step-center {
+  margin: auto;
+  padding-top: 1rem;
+  border: 5px;
+  border-color: black;
+}
+.hos-styles {
+  padding: 0 1rem !important;
+}
 // loader css
 #loader {
     transition: all 0.5s ease-in-out;

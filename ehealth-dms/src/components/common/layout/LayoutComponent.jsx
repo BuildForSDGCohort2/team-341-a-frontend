@@ -3,33 +3,24 @@ import clsx from 'clsx';
 import {
   useTheme,
   Drawer,
-  AppBar,
-  Toolbar,
   List,
-  Typography,
   IconButton,
   ListItem,
   ListItemText,
   Icon,
-  InputBase,
-  Badge,
   Collapse
 } from '@material-ui/core';
 
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import { Link as RouterLink } from 'react-router-dom';
 import { Usestyles } from 'components';
 import { RenderMobileMenu, CustomizedMenus } from 'components';
 import Header from './Header';
+import { Footer } from "components";
 
 export default function LayoutComponent(props) {
   const classes = Usestyles();
@@ -181,6 +172,7 @@ export default function LayoutComponent(props) {
          })}
         </List>
       </Drawer>
+      <Footer openDrawer={openDrawer} fluid />
     </div>
   );
 }

@@ -1,13 +1,14 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import eHealthRoutes from "routes/routes.jsx";
-import { LayoutComponent, Footer } from "components";
+import { LayoutComponent } from "components";
 import {LandingPage} from "components";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    // minHeight: "100vh",
   },
   toolbar: {
     display: 'flex',
@@ -19,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
   },
 }));
 
@@ -48,9 +48,7 @@ export default function EhealthLayout(props) {
               }
               return "";
             })}
-            <LandingPage />
           </Switch>
-          {/* <Footer fluid /> */}
         </main>
       </div>
     );

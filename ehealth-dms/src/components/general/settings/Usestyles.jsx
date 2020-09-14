@@ -152,11 +152,52 @@ const drawerWidth = 240;
       backgroundColor: theme.palette.secondary.main,
     },
     form: {
-      width: '100%', // Fix IE 11 issue.
+      // width: '100%', // Fix IE 11 issue.
+      flexGrow: 1,
       marginTop: theme.spacing(3),
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
+    },
+    stepperRoot: {
+      // width: "100%",
+      padding: theme.spacing(0, 4),
+      // backgroundColor: "#f8bbd0"
+    },
+    backButton: {
+      marginRight: theme.spacing(1),
+    },
+    instructions: {
+      marginTop: theme.spacing(5),
+      [theme.breakpoints.down('sm')]: {
+        marginTop: theme.spacing(2),
+      },
+      marginBottom: theme.spacing(1),
+    },
+    textFieldMargin: {
+      margin: theme.spacing(1),
+    },
+    hospitalFormRoot: {
+      flexGrow: 1,
+      marginTop: theme.spacing(3),
+    },
+    customPaper: {
+      [theme.breakpoints.up('sm')]: {
+        width: "75%",
+      },
+      [theme.breakpoints.down('sm')]: {
+        width: "100%",
+      },
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    },
+    stepperPaper: {
+      // flexGrow: 1,
+      // alignSelf: 'center',
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
     },
   }));
 

@@ -35,7 +35,7 @@ import EditMedicine from 'views/medicine/EditMedicine.jsx';
 import Map from 'views/map/Map.jsx';
 
 var eHealthRoutes = [
-  {path: "/app/dashboard", name: "Dashboard", icon: "speed", color: "#ffcdd2", badge: "", component: Dashboard},
+  {path: "/app", name: "Dashboard", icon: "speed", color: "#ffcdd2", badge: "", component: Dashboard},
   {path: "/app/map", name: "Map", icon: "near_me", color: "#fff176", badge: "", component: Map},
   {
     path: "#", name: "Hospital", icon: "local_hospital", type: "dropdown", color: "#69f0ae", parentid: "hospital",
