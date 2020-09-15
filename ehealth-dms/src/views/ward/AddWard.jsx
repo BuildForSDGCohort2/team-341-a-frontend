@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Avatar, Typography, Grid, TextField, Button } from "@material-ui/core";
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import HealingIcon from '@material-ui/icons/Healing';
 import { Usestyles } from "components";
 class AddWard extends Component {
 
@@ -22,7 +22,7 @@ function NewWard() {
     <Container component="main" maxWidth="xs">
       <div className={classes.formPaper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <HealingIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Add a new Ward
@@ -39,29 +39,32 @@ function NewWard() {
                 fullWidth
                 id="wname"
                 label="Ward Name"
+                type="text"
                 autoFocus
               />
             </Grid>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={6}>
             <TextField
                 variant="outlined"
                 required
                 fullWidth
-                id="wHeadName"
-                label="Ward Head"
-                name="wHeadName"
+                id="wid"
+                label="Ward ID"
+                type="text"
+                name="wid"
                 autoComplete="whname"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="hid"
+                label="Hospital ID"
+                type="text"
+                name="hid"
+                autoComplete="hid"
               />
             </Grid>
             <Grid item xs={12}>
@@ -69,10 +72,10 @@ function NewWard() {
                 variant="outlined"
                 required
                 fullWidth
-                name="phone"
-                label="Phone"
-                type="phone"
-                id="phone"
+                name="description"
+                label="Description"
+                type="text"
+                id="description"
                 autoComplete="current-phone"
               />
             </Grid>
