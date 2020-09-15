@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar/Avatar';
 import Typography from '@material-ui/core/Typography/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Usestyles } from '../../components';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField/TextField';
-import { FormControlLabel, Checkbox, Link, Button } from '@material-ui/core';
+import { FormControlLabel, Checkbox } from '@material-ui/core';
+import {CustomInputs, CustomSelect} from '../../components/general/customStyles/CustomStyles';
 
 class InitEmployee extends Component {
   render() {
@@ -18,70 +18,88 @@ class InitEmployee extends Component {
 }
 
 function RegisterForm() {
+
+  const CURRENT_DATE = new Date();
   const classes = Usestyles();
+  const initFormData =     {
+    fullName: '',
+    gender: '',
+    phone: '',
+    email: '',
+    dob: CURRENT_DATE
+    }
+  const options = ['Male','Female','Others']
+
+  const [formData, setFormData] = useState(initFormData);
+
+
+  const handleFormValueChange = ({ target: { name, value } }) => {
+    let newValue = name === "contact" ? value.trim().replace(/\s+/g, "") : value;
+    setFormData((s) => ({
+      ...s,
+      [name]: newValue,
+    }));
+  };
 
   return (
       <div className={classes.formPaper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
         <Typography component="h1" variant="h5">
-          Add Employee
+          <label className="custom-label">Add Admin User</label>
         </Typography>
 
         <form className={classes.hospitalFormRoot}>
         <Grid className={classes.textField} container spacing={2}>
             <Grid item xs={12}>
-              <TextField
-                autoComplete="fname"
-                name="fullName"
-                variant="outlined"
-                required
-                fullWidth
-                id="fulltName"
-                label="Full Name"
-                autoFocus
+              <CustomInputs
+              label="Full Name"
+              name="fullName"
+              id="fullName"
+              type="text"
+              onChange={handleFormValueChange}
+              value={formData.fullName}
+               />
+            </Grid>
+            <Grid item xs={12}>
+            <CustomInputs
+              label="Date of Birth"
+              name="dob"
+              id="dob"
+              type="date"
+              onChange={handleFormValueChange}
+              value={formData.dob}
+              shrink={true}
+               />
+            </Grid>
+            <Grid item xs={12}>
+              <CustomSelect 
+              value={formData.gender}
+              onChange={handleFormValueChange}
+              label="Gender"
+              options={options}
+              defaultValue="Select Gender"
+              name= 'gender'
+              id='gender'
               />
             </Grid>
             <Grid item xs={12}>
-            <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="dept"
-                label="Department"
-                name="dept"
-                autoComplete="dept"
-              />
+            <CustomInputs
+              name="phone"
+              label="Phone"
+              type="text"
+              id="phone"
+              onChange={handleFormValueChange}
+              value={formData.fullName}
+               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
+              <CustomInputs
                 name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="phone"
-                label="Phone"
-                type="phone"
-                id="phone"
-                autoComplete="current-phone"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="Email is sent to employee to complete registration."
-              />
+                label="Email"
+                type="text"
+                id="email"
+                onChange={handleFormValueChange}
+                value={formData.fullName}
+                />
             </Grid>
           </Grid>
         </form>

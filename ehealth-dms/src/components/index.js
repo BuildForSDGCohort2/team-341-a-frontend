@@ -10,8 +10,7 @@ import LandingPage from './common/landingPage/LandingPage';
 import AddHospital from '../views/hospital/AddHospital';
 import InitEmployee from '../views/employee/InitEmployee';
 import AdminUser from '../views/adminUser/Admin';
-import CustomButton from './general/customButton/CustomButton';
-import StepperHeader from './common/stepper/StepperHeader';
+import CustomStepper from './common/stepper/CustomStepper';
 
 export {
     EhealthLayout,
@@ -21,8 +20,7 @@ export {
     AdminUser,
     LandingPage,
     Usestyles,
-    CustomButton,
-    StepperHeader,
+    CustomStepper,
 
     CustomizedMenus,
     RenderMobileMenu,

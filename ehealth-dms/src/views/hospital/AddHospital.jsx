@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Usestyles } from '../../components';
-import TextField from '@material-ui/core/TextField/TextField';
 import Grid from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 import { countries } from "../../variables/countries.jsx";
+import {CustomInputs, CustomSelect} from '../../components/general/customStyles/CustomStyles';
+import Typography from "@material-ui/core/Typography";
 
 
 export default function AddHospital() {
   const countryList = countries.map((item, i) => {
-    return <option key={i}>{item.country}</option>;
+    return item.country
   });
   const initFormData =     {
     country: '',
@@ -33,11 +31,10 @@ export default function AddHospital() {
       countries.forEach((item, i) => {
         if (country === item.country) {
           plist = item.province.map((region, index) => {
-            return <option key={index + 1}>{region.name}</option>;
+            return region.name;
           });
         }
       });
-      plist.unshift(<option key={0} value="" disabled></option>)
       return plist;
     };
     setProvinceList(provinceOptionsForCountry(formData.country));
@@ -51,102 +48,80 @@ export default function AddHospital() {
   }, [formData.state]);
 
   return (
+  <div className={classes.formPaper}>
+    <Typography component="h1" variant="h5">
+    <label className="custom-label">Register Hospital</label>
+  </Typography>
     <form className={classes.hospitalFormRoot}>
       <Grid className={classes.textField} container spacing={2}>
         <Grid item xs={12}>
-             <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="hname"
-                label="Hospital name"
-                name="hospitalname"
-                type="text"
-              />
+          <CustomInputs
+          id="hname"
+          label="Hospital name"
+          name="hospitalname"
+          type="text"
+          />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="services"
-                label="Services offered"
-                name="services"
-                type="text"
-              />
+        <CustomInputs 
+        id="contactperson"
+        label="Contact Person"
+        name="contactPerson"
+        type="text"
+        />
         </Grid>
         <Grid item xs={12}>
-             <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="contactperson"
-                label="Contact Person"
-                name="contactPerson"
-                type="text"
-              />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="contactnumber"
-                label="Emergency Contact number"
-                name="contact"
-                type="text"
-              />
+        <CustomInputs 
+          id="contactnumber"
+          label="Emergency Contact number"
+          name="contact"
+          type="text"
+        />
         </Grid>
     <Grid item xs={12}>
-      <FormControl fullWidth variant="outlined" className={classes.textField}>
-        <InputLabel htmlFor="country">Select Country</InputLabel>
-        <Select
-          native
-          onChange={handleFormValueChange}
-          value={formData.country}
-          label="Select Country"
-          inputProps={{
-            name: 'country',
-            id: 'country',
-          }}
-        >
-          <option aria-label="" value="" disabled />  
-          {/* Select Country</option> */}
-          {countryList}
-        </Select>
-      </FormControl>
+      <CustomSelect 
+        value={formData.country}
+        onChange={handleFormValueChange}
+        label="Country"
+        options={countryList}
+        defaultValue="Select Country"
+        name= 'country'
+        id='country'
+      />
       </Grid>
       <Grid item xs={12}>
-        <FormControl fullWidth variant="outlined" className={classes.textField}>
-          <InputLabel htmlFor="state">Select State</InputLabel>
-          <Select
-            native
-            onChange={handleFormValueChange}
-            value={formData.state}
-            label="Select State"
-            inputProps={{
-              name: 'state',
-              id: 'state',
-            }}
-          >
-            {provinceList}
-          </Select>
-        </FormControl>
+        <CustomSelect 
+          value={formData.state}
+          onChange={handleFormValueChange}
+          label="State"
+          options={provinceList}
+          defaultValue="Select State"
+          name= 'state'
+          id='state'
+        />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="city"
-                label="City"
-                name="city"
-                type="text"
-                value={formData.city}
-                onChange={handleFormValueChange}
-              />
+        <CustomInputs 
+         id="services"
+         label="Services offered"
+         name="services"
+         type="text"
+         placeholder="Use key words-Eg: Midwifery, Stroke, Hypothermia, etc"
+         multiline={true}
+        />
+        </Grid>
+        <Grid item xs={12}>
+        <CustomInputs 
+          id="city"
+          label="City"
+          name="city"
+          type="text"
+          value={formData.city}
+          onChange={handleFormValueChange}
+        />
         </Grid>
       </Grid>
     </form>
+    </div>
   );
 }

@@ -1,21 +1,16 @@
-import React from 'react';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { Switch, Redirect } from 'react-router-dom';
 import { Usestyles } from 'components';
 import Grid from '@material-ui/core/Grid';
-import { AddHospital, InitEmployee, AdminUser, CustomButton } from 'components';
+import { AddHospital, InitEmployee, AdminUser, CustomStepper } from 'components';
 import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
-import {StepperHeader} from 'components';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { CustomTypography } from '../../general/customStyles/CustomStyles';
 
 function getSteps() {
-  return ['Register your Hospital', 'Add Employee', 'Create Admin User'];
+  return ['Register your Hospital', 'Add Admin User', 'Create Admin Login'];
 }
 
 function getStepContent(stepIndex) {
@@ -31,44 +26,50 @@ function getStepContent(stepIndex) {
   }
 }
 
-export default function LandingPage() {
+export default function LandingPage(props) {
   
   const classes = Usestyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if (activeStep === 2) {
+      props.history.push('/app');
+    }
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleSubmitForms = () => {
-    setActiveStep(0);
-  };
-
   return (
 <div className={classes.grow, "bgimg"} >
-{/* <Grid container direction="row" justify="center" alignItems="stretch" className="bgc"> */}
-<Container fixed>
+<Container fixed className={classes.containerRoot}>
+  <div className="animate__animated animate__zoomIn animate__infinite animate__delay-0.5s animate__slower 30s"><p><h1 className="page-heading h1">Team 341-A </h1><span className="page-heading span">eHealth Delivery Management System</span></p></div>
 <CssBaseline />
   <Grid container spacing={3} direction="row" justify="center" alignItems="center">
    <Grid item xs={12}>
-      {/* <Paper className={classes.stepperPaper}> */}
-        <Stepper activeStep={activeStep} alternativeLabel>
-            {steps.map((label) => (
-            <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-            </Step>
-            ))}
-        </Stepper>
-      {/* </Paper> */}
+      <CustomStepper
+      steps={steps}
+      activeStep={activeStep}
+      />
     </Grid>
-    <Grid item xs={6}>
+    <Grid item md={6}>
+        <CustomTypography 
+          text="Good healthcare delivery system is key to the wellbeing of any nation. However, governments are still searching for ways to improve equity, efficiency, effectiveness, and responsiveness of their health systems, particularly on the African Continent."
+        />
+        <CustomTypography 
+          text="Moreover, countries that have managed to gain a bit of improvements in their healthcare delivery systems still experience unnecessary deaths of citizens because of lack of technological advances to easily locate the nearest healthcare facility in time of emergency. Patients sometimes die due to longer routes taken to get to medical centers.
+          "
+        />
+        <CustomTypography 
+          text=" Giving these challenges, this app seeks to provide solutions that will provide quick and easy access to health facilities and improve the standards of quality healthcare in Africa. The app will pull out healthcare organizations from inefficient traditional concepts and utilize technology/tools to perform efficiently and hence generate better quality results.
+          "
+        />
+    </Grid>
+    <Grid item md={6}>
       <Grid container justify="center">
-        {/* <Paper className={classes.customPaper}> */}
         <div className={classes.instructions}>{getStepContent(activeStep)}</div>
           <Box display="flex" justifyContent="center" m={1} p={1}>
               <Button 
@@ -85,24 +86,14 @@ export default function LandingPage() {
                 color="primary"
                 onClick={handleNext}
                 className={classes.backButton}
-                disabled={activeStep === 2}
                 >
                 {activeStep === steps.length - 1 ? 'Create Account' : 'Next'}
               </Button>
             </Box>
-        {/* </Paper> */}
       </Grid>
-    </Grid>
-    <Grid item xs={6}>
-      {/* <Paper className={classes.stepperPaper}> */}
-        <Typography>
-            The responsive grid focuses on consistent spacing widths, rather than column width. Material Design margins and columns follow an 8px square baseline grid. The spacing property is an integer between 0 and 10 inclusive. By default, the spacing between two grid items follows a linear function: output(spacing) = spacing * 8px, e.g. spacing={2} creates a 16px wide gap.
-        </Typography>
-      {/* </Paper> */}
     </Grid>
     </Grid>
     </Container>
-    {/* </Grid> */}
     </div>
   );
 }

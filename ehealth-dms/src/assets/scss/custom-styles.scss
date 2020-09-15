@@ -33,9 +33,17 @@ html, body {
     }
   }
 }
-
+.MuiStepLabel-label {
+  color: #ffffff !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+.custom-label {
+  color: #1C2331 !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
 .bgimg {
-  // flex: 1;
   background: url("/images/healthImages/francisco-venancio-M4Xloxsg0Gw-unsplash.jpg");
   background-repeat: no-repeat;
   background-position: right;
@@ -139,3 +147,28 @@ html, body {
       opacity: 0;
     }
   }
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  .text-weight {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #1c2a48 !important;
+  }
+  .MuiContainer-fixed {
+    border-right: 0.5px solid;
+    border-left: 0.5px solid;
+    border-color: #e3f2fd;
+  }
+  .span {
+    color: #1c2a48 !important;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  .h1 {
+    color: lime;
+    font-size: 2.5rem;
+  }
+ .page-heading {
+  display: inline;
+}

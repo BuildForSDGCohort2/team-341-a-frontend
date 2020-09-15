@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import "assets/scss/custom-styles.scss";
+import "../node_modules/animate.css/animate.css";
 
 import indexRoutes from "./routes/index.jsx";
 import { Spinner } from "./components";

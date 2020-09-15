@@ -1,5 +1,6 @@
 import { makeStyles, fade } from '@material-ui/core/styles';
 import blueGrey from '@material-ui/core/colors/blueGrey';
+import { green } from '@material-ui/core/colors';
 
 const drawerWidth = 240;
 
@@ -152,17 +153,12 @@ const drawerWidth = 240;
       backgroundColor: theme.palette.secondary.main,
     },
     form: {
-      // width: '100%', // Fix IE 11 issue.
+      width: '100%', // Fix IE 11 issue.
       flexGrow: 1,
       marginTop: theme.spacing(3),
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
-    },
-    stepperRoot: {
-      // width: "100%",
-      padding: theme.spacing(0, 4),
-      // backgroundColor: "#f8bbd0"
     },
     backButton: {
       marginRight: theme.spacing(1),
@@ -174,30 +170,63 @@ const drawerWidth = 240;
       },
       marginBottom: theme.spacing(1),
     },
-    textFieldMargin: {
-      margin: theme.spacing(1),
-    },
     hospitalFormRoot: {
       flexGrow: 1,
       marginTop: theme.spacing(3),
     },
-    customPaper: {
+    containerRoot: {
       [theme.breakpoints.up('sm')]: {
-        width: "75%",
+      padding: theme.spacing(10),
       },
       [theme.breakpoints.down('sm')]: {
-        width: "100%",
-      },
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
+        padding: theme.spacing(1),
+        },
+      textAlign: 'center'
     },
-    stepperPaper: {
-      // flexGrow: 1,
-      // alignSelf: 'center',
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
+    stepperBackground: {
+      backgroundColor: "transparent",
+    },
+    stepperLabel: {
+      color: blueGrey[800],
+    },
+    selectBorder: {
+      '&:before': {
+        borderColor: '#l80d8ff',
+    },
+    '&:after': {
+        borderColor: '#l80d8ff',
+    },
+      border: '2px solid'
+    },
+    passwordRoot: {
+      "& .MuiOutlinedInput-input": {
+        fontWeight: 700,
+        fontSize: '1.05rem',
+        color: '#1c2a48 !important'
+      },
+      "& .MuiInputLabel-root": {
+        color: "#ffffff",   
+        fontWeight: 600
+      },
+      "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+        borderColor: "#59698d",
+        border: '2px solid'
+      },
+      "&:hover .MuiOutlinedInput-input": {
+        color: "#9933CC"
+      },
+      "&:hover .MuiInputLabel-root": {
+        color: "#9933CC"
+      },
+      "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+        borderColor: "#9933CC"
+      },
+    },
+    checkboxLabel: {
+      '& .MuiFormControlLabel-label': {
+        color: "#1c2a48",
+        fontWeight: 600
+      }
     },
   }));
 
