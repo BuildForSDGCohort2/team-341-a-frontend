@@ -143,7 +143,7 @@ const drawerWidth = 240;
       paddingLeft: theme.spacing(4),
     },
     formPaper: {
-      marginTop: theme.spacing(8),
+      marginTop: theme.spacing(2),
       display: 'flex',
       flexDirection: "column",
       alignItems: 'center',
@@ -172,54 +172,37 @@ const drawerWidth = 240;
     },
     hospitalFormRoot: {
       flexGrow: 1,
-      marginTop: theme.spacing(3),
+      marginTop: theme.spacing(1),
     },
     containerRoot: {
-      [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(10),
-      },
-      [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(1),
-        },
+      padding: theme.spacing(1),
       textAlign: 'center'
     },
     stepperBackground: {
       backgroundColor: "transparent",
     },
-    stepperLabel: {
-      color: blueGrey[800],
-    },
-    selectBorder: {
-      '&:before': {
-        borderColor: '#l80d8ff',
-    },
-    '&:after': {
-        borderColor: '#l80d8ff',
-    },
-      border: '2px solid'
-    },
     passwordRoot: {
       "& .MuiOutlinedInput-input": {
-        fontWeight: 700,
+        fontWeight: 600,
         fontSize: '1.05rem',
         color: '#1c2a48 !important'
       },
       "& .MuiInputLabel-root": {
         color: "#ffffff",   
-        fontWeight: 600
+        fontWeight: 400
       },
       "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#59698d",
-        border: '2px solid'
+        borderColor: "#ffffff",
+        border: '1px solid'
       },
       "&:hover .MuiOutlinedInput-input": {
-        color: "#9933CC"
+        color: "#ffffff"
       },
       "&:hover .MuiInputLabel-root": {
-        color: "#9933CC"
+        color: "#ffffff"
       },
       "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#9933CC"
+        borderColor: "#ffffff"
       },
     },
     checkboxLabel: {

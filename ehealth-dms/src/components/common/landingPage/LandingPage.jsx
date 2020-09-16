@@ -7,7 +7,9 @@ import { AddHospital, InitEmployee, AdminUser, CustomStepper } from 'components'
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { CustomTypography } from '../../general/customStyles/CustomStyles';
+import { CustomTypography, CustomButton } from '../../general/customStyles/CustomStyles';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 function getSteps() {
   return ['Register your Hospital', 'Add Admin User', 'Create Admin Login'];
@@ -73,22 +75,23 @@ export default function LandingPage(props) {
         <div className={classes.instructions}>{getStepContent(activeStep)}</div>
           <Box display="flex" justifyContent="center" m={1} p={1}>
               <Button 
-                variant="contained" 
+                variant="outlined" 
                 color="secondary"
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 className={classes.backButton}
+                startIcon={<SkipPreviousIcon />}
                 >
                 Previous
               </Button>
-              <Button 
-                variant="contained" 
-                color="primary"
-                onClick={handleNext}
-                className={classes.backButton}
-                >
-                {activeStep === steps.length - 1 ? 'Create Account' : 'Next'}
-              </Button>
+              <CustomButton 
+              icon={SkipNextIcon}
+              variant="outlined" 
+              color="primary" 
+              onClick={handleNext}
+              class={classes.backButton}
+              text={activeStep === steps.length - 1 ? 'Create Account' : 'Next'}
+              />
             </Box>
       </Grid>
     </Grid>

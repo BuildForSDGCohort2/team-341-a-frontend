@@ -12,10 +12,7 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       // Purple and green play nicely together.
-      main: purple[500],
-    },
-    secondary: {
-      main: '#11cb5f',
+      main: '#76ff03',
     },
   },
 });
@@ -23,23 +20,23 @@ const theme = createMuiTheme({
 const CssTextField = withStyles({
   root: {
     '& label.MuiInputLabel-root': {
-      color: '#ffffff', //'#ff4081',
-      fontWeight: 500
+      color: '#ffffff',
+      fontWeight: 400
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: '#59698d',
-        border: '2px solid'
+        borderColor: '#ffffff',
+        border: '1px solid'
       },
       '&:hover fieldset': {
-        borderColor: '#9933CC',
+        borderColor: '#ffffff',
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#9933CC',
+        borderColor: '#ffffff',
       }
     },
       '&:hover label': {
-        color: '#9933CC',
+        color: '#ffffff',
       },
       '& .MuiInputBase-multiline': {
         fontWeight: 700,
@@ -59,20 +56,20 @@ const useStyles = makeStyles({
     },
     "& .MuiInputLabel-root": {
       color: "#ffffff",   
-      fontWeight: 500
+      fontWeight: 400
     },
     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#59698d",
-      border: '2px solid'
+      borderColor: "#ffffff",
+      border: '1px solid'
     },
     "&:hover .MuiOutlinedInput-input": {
-      color: "#9933CC"
+      color: "#ffffff"
     },
     "&:hover .MuiInputLabel-root": {
-      color: "#9933CC"
+      color: "#ffffff"
     },
     "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#9933CC"
+      borderColor: "#ffffff"
     },
   },
   input: { 
@@ -84,18 +81,19 @@ const useStyles = makeStyles({
 });
 const WhiteTextTypography = withStyles((theme) => ({
   root: {
-    color: "#ec407a",
+    color: "#1c2331",
     [theme.breakpoints.down('sm')]: {
       display: 'none',
       },
-      fontWeight: 500
+      fontWeight: 500,
+      lineHeight: 2
   },
 }))(Typography);
 
 export function CustomButton(props) {
   return (
     <ThemeProvider theme={theme}>
-      <Button variant={props.variant} color={props.color} onClick={props.onClick}>{props.text}</Button>
+      <Button  endIcon={<props.icon />} variant={props.variant} color={props.color} onClick={props.onClick} className={props.class}>{props.text}</Button>
     </ThemeProvider>
   );
 }
