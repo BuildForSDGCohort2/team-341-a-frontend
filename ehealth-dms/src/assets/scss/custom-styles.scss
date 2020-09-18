@@ -34,7 +34,7 @@ html, body {
   }
 }
 .MuiStepLabel-label {
-  color: #ffffff !important;
+  // color: #ffffff !important;
   font-size: 1.1rem !important;
   font-weight: 600 !important;
 }
@@ -157,11 +157,6 @@ html, body {
     font-size: 1.05rem;
     color: #1c2a48 !important;
   }
-  // .MuiContainer-fixed {
-  //   border-right: 0.5px solid;
-  //   border-left: 0.5px solid;
-  //   border-color: #e3f2fd;
-  // }
   .span {
     color: #1c2a48 !important;
     font-size: 1.5rem;
@@ -172,5 +167,14 @@ html, body {
     font-size: 2.5rem;
   }
  .page-heading {
-  display: inline;
+  text-align: center;
+  padding-bottom: 0.75rem;
+}
+.heading-description {
+  text-align: left;
+  padding: 1rem 0 1rem 4rem;
+
+  span {
+    font-weight: 600;
+  }
 }

@@ -1,11 +1,10 @@
 import React, { Component, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar/Avatar';
-import Typography from '@material-ui/core/Typography/Typography';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Usestyles } from '../../components';
 import Grid from '@material-ui/core/Grid';
-import { FormControlLabel, Checkbox } from '@material-ui/core';
 import {CustomInputs, CustomSelect} from '../../components/general/customStyles/CustomStyles';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import Typography from '@material-ui/core/Typography/Typography';
 
 class InitEmployee extends Component {
   render() {
@@ -43,6 +42,9 @@ function RegisterForm() {
 
   return (
       <div className={classes.formPaper}>
+            <Avatar className={classes.avatar}>
+              <PersonAddIcon />
+            </Avatar>
         <Typography component="h1" variant="h5">
           <label className="custom-label">Add Admin User</label>
         </Typography>

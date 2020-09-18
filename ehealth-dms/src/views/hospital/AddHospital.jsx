@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Usestyles } from '../../components';
-import Grid from '@material-ui/core/Grid';
 import { countries } from "../../variables/countries.jsx";
 import {CustomInputs, CustomSelect} from '../../components/general/customStyles/CustomStyles';
-import Typography from "@material-ui/core/Typography";
+import { Avatar, Typography, Grid } from "@material-ui/core";
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import { FormControlLabel, Checkbox } from '@material-ui/core';
 
 
 export default function AddHospital() {
@@ -18,6 +19,8 @@ export default function AddHospital() {
   const classes = Usestyles();
   const [provinceList, setProvinceList] = useState([]);
   const [formData, setFormData] = useState(initFormData);
+  const [checked, setChecked] = React.useState(false);
+
   const handleFormValueChange = ({ target: { name, value } }) => {
     let newValue = name === "contact" ? value.trim().replace(/\s+/g, "") : value;
     setFormData((s) => ({
@@ -47,11 +50,17 @@ export default function AddHospital() {
     }));
   }, [formData.state]);
 
+  const handleCheckChanged = (e) => {
+    setChecked(e.target.checked);
+  };
   return (
   <div className={classes.formPaper}>
+    <Avatar className={classes.avatar}>
+        <AccountBalanceIcon />
+    </Avatar>
     <Typography component="h1" variant="h5">
     <label className="custom-label">Register Hospital</label>
-  </Typography>
+    </Typography>
     <form className={classes.hospitalFormRoot}>
       <Grid className={classes.textField} container spacing={2}>
         <Grid item xs={12}>
@@ -120,6 +129,15 @@ export default function AddHospital() {
           onChange={handleFormValueChange}
         />
         </Grid>
+        <Grid item xs={12}>
+              <FormControlLabel
+                className={classes.checkboxLabel}
+                defaultChecked
+                control={<Checkbox value="agree" checked={checked}
+                onChange={handleCheckChanged} />}
+                label= 'By continuing, I agree to terms and conditions'
+              />
+            </Grid>
       </Grid>
     </form>
     </div>

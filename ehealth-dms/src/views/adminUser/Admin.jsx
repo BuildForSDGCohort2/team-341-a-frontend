@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Avatar from '@material-ui/core/Avatar/Avatar';
 import Typography from '@material-ui/core/Typography/Typography';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Usestyles } from '../../components';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField/TextField';
 import { FormControlLabel, Checkbox } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
@@ -14,6 +12,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import { CustomInputs } from '../../components/general/customStyles/CustomStyles';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 
 class AdminUser extends Component {
@@ -53,6 +52,9 @@ function AddAdminUser() {
   };
   return (
       <div className={classes.formPaper}>
+            <Avatar className={classes.avatar}>
+              <VpnKeyIcon />
+            </Avatar>
         <Typography component="h1" variant="h3">
           <label className="custom-label">Create Login Credential</label>
         </Typography>

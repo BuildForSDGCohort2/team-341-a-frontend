@@ -19,25 +19,6 @@ const theme = createMuiTheme({
 
 const CssTextField = withStyles({
   root: {
-    '& label.MuiInputLabel-root': {
-      color: '#ffffff',
-      fontWeight: 400
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '#ffffff',
-        border: '1px solid'
-      },
-      '&:hover fieldset': {
-        borderColor: '#ffffff',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: '#ffffff',
-      }
-    },
-      '&:hover label': {
-        color: '#ffffff',
-      },
       '& .MuiInputBase-multiline': {
         fontWeight: 700,
         fontSize: '1.05rem',
@@ -53,23 +34,6 @@ const useStyles = makeStyles({
       fontWeight: 700,
       fontSize: '1.05rem',
       color: '#1c2a48 !important'
-    },
-    "& .MuiInputLabel-root": {
-      color: "#ffffff",   
-      fontWeight: 400
-    },
-    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#ffffff",
-      border: '1px solid'
-    },
-    "&:hover .MuiOutlinedInput-input": {
-      color: "#ffffff"
-    },
-    "&:hover .MuiInputLabel-root": {
-      color: "#ffffff"
-    },
-    "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#ffffff"
     },
   },
   input: { 

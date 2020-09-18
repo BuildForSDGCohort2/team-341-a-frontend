@@ -10,6 +10,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { CustomTypography, CustomButton } from '../../general/customStyles/CustomStyles';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
+import LandingPageHeader from './LandingPageHeader';
+import Paper from '@material-ui/core/Paper';
 
 function getSteps() {
   return ['Register your Hospital', 'Add Admin User', 'Create Admin Login'];
@@ -46,37 +48,33 @@ export default function LandingPage(props) {
   };
 
   return (
-<div className={classes.grow, "bgimg"} >
-<Container fixed className={classes.containerRoot}>
-  <div className="animate__animated animate__zoomIn animate__infinite animate__delay-0.5s animate__slower 30s"><p><h1 className="page-heading h1">Team 341-A </h1><span className="page-heading span">eHealth Delivery Management System</span></p></div>
-<CssBaseline />
-  <Grid container spacing={3} direction="row" justify="center" alignItems="center">
-   <Grid item xs={12}>
+<div className={classes.landingPageStyling} >
+<LandingPageHeader />
+<Grid item xs={12}>
+  <Paper className={classes.headerStepper} elevation={0}>
       <CustomStepper
       steps={steps}
       activeStep={activeStep}
       />
-    </Grid>
-    <Grid item md={6}>
-        <CustomTypography 
-          text="Good healthcare delivery system is key to the wellbeing of any nation. However, governments are still searching for ways to improve equity, efficiency, effectiveness, and responsiveness of their health systems, particularly on the African Continent."
-        />
-        <CustomTypography 
-          text="Moreover, countries that have managed to gain a bit of improvements in their healthcare delivery systems still experience unnecessary deaths of citizens because of lack of technological advances to easily locate the nearest healthcare facility in time of emergency. Patients sometimes die due to longer routes taken to get to medical centers.
-          "
-        />
-        <CustomTypography 
-          text=" Giving these challenges, this app seeks to provide solutions that will provide quick and easy access to health facilities and improve the standards of quality healthcare in Africa. The app will pull out healthcare organizations from inefficient traditional concepts and utilize technology/tools to perform efficiently and hence generate better quality results.
-          "
-        />
-    </Grid>
+  </Paper>
+</Grid>
+<Grid item xs={12}>
+  <Paper className={classes.headerDescription} elevation={0}>
+  <Container fixed maxWidth="md">
+    <p className="heading-description">SDG Cohort 2 Project<br/><span>eHealth Delivery Management System</span><br/>Your healthcare solution</p>
+  </Container>
+  </Paper>
+</Grid>
+<Container fixed className={classes.containerRoot} maxWidth="md">
+<CssBaseline />
+  <Grid container spacing={3} direction="row" justify="center" alignItems="center">
     <Grid item md={6}>
       <Grid container justify="center">
         <div className={classes.instructions}>{getStepContent(activeStep)}</div>
           <Box display="flex" justifyContent="center" m={1} p={1}>
               <Button 
                 variant="outlined" 
-                color="secondary"
+                color="default"
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 className={classes.backButton}
@@ -84,14 +82,15 @@ export default function LandingPage(props) {
                 >
                 Previous
               </Button>
-              <CustomButton 
-              icon={SkipNextIcon}
+              <Button 
+              endIcon={<SkipNextIcon />}
               variant="outlined" 
-              color="primary" 
+              color="secondary" 
               onClick={handleNext}
-              class={classes.backButton}
-              text={activeStep === steps.length - 1 ? 'Create Account' : 'Next'}
-              />
+              className={classes.backButton}
+              >
+              {activeStep === steps.length - 1 ? 'Create Account' : 'Next'}
+              </Button>
             </Box>
       </Grid>
     </Grid>

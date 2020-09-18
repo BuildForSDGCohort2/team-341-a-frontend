@@ -1,6 +1,6 @@
 import { makeStyles, fade } from '@material-ui/core/styles';
 import blueGrey from '@material-ui/core/colors/blueGrey';
-import { green } from '@material-ui/core/colors';
+
 
 const drawerWidth = 240;
 
@@ -172,14 +172,16 @@ const drawerWidth = 240;
     },
     hospitalFormRoot: {
       flexGrow: 1,
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(3),
     },
     containerRoot: {
-      padding: theme.spacing(1),
-      textAlign: 'center'
+      textAlign: 'center',
+      // paddingTop: theme.spacing(-10),
+      marginTop: theme.spacing(-7)
     },
     stepperBackground: {
       backgroundColor: "transparent",
+      paddingBottom: theme.spacing(1),
     },
     passwordRoot: {
       "& .MuiOutlinedInput-input": {
@@ -187,29 +189,30 @@ const drawerWidth = 240;
         fontSize: '1.05rem',
         color: '#1c2a48 !important'
       },
-      "& .MuiInputLabel-root": {
-        color: "#ffffff",   
-        fontWeight: 400
-      },
-      "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#ffffff",
-        border: '1px solid'
-      },
-      "&:hover .MuiOutlinedInput-input": {
-        color: "#ffffff"
-      },
-      "&:hover .MuiInputLabel-root": {
-        color: "#ffffff"
-      },
-      "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#ffffff"
-      },
     },
     checkboxLabel: {
       '& .MuiFormControlLabel-label': {
         color: "#1c2a48",
-        fontWeight: 600
+        fontWeight: 500,
+        fontSize: '0.95rem',
       }
+    },
+    headerStepper: {
+      width: '100%', 
+      flexGrow: 1,
+      paddingBottom: theme.spacing(0),
+    },
+    landingPageStyling: {
+      paddingTop: theme.spacing(0),
+      flexGrow: 1,
+      backgroundColor: "#ffffff",
+      minHeight: "100vh",
+    },
+    headerDescription: {
+      width: '100%',
+      flexGrow: 1,
+      paddingTop: theme.spacing(0),
+      backgroundColor: "#d0d6e2"
     },
   }));
 

@@ -10,6 +10,7 @@ import clsx from 'clsx';
 import StepConnector from '@material-ui/core/StepConnector';
 import PropTypes from 'prop-types';
 import { Usestyles } from 'components';
+import Container from '@material-ui/core/Container';
 
 
 const ColorlibConnector = withStyles({
@@ -90,6 +91,7 @@ ColorlibStepIcon.propTypes = {
 const CustomStepper = (props) => { 
   const classes = Usestyles();
   return ( 
+    <Container fixed maxWidth="md">
       <Stepper alternativeLabel activeStep={props.activeStep} className={classes.stepperBackground} connector={<ColorlibConnector />}>
         {props.steps.map((label) => (
           <Step key={label}>
@@ -97,6 +99,8 @@ const CustomStepper = (props) => {
           </Step>
         ))}
       </Stepper>
+      <p className="page-heading">You are only two steps away from getting your account setup</p>
+    </Container>
    );
 }
  
