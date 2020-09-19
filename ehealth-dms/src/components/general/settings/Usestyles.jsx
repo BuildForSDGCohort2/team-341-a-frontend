@@ -176,7 +176,6 @@ const drawerWidth = 240;
     },
     containerRoot: {
       textAlign: 'center',
-      // paddingTop: theme.spacing(-10),
       marginTop: theme.spacing(-7)
     },
     stepperBackground: {

@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import { Switch, Redirect } from 'react-router-dom';
 import { Usestyles } from 'components';
 import Grid from '@material-ui/core/Grid';
-import { AddHospital, InitEmployee, AdminUser, CustomStepper } from 'components';
+import { AddHospital, InitEmployee, AdminUser, CustomStepper, EntityAccount } from 'components';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -67,7 +67,13 @@ export default function LandingPage(props) {
 </Grid>
 <Container fixed className={classes.containerRoot} maxWidth="md">
 <CssBaseline />
-  <Grid container spacing={3} direction="row" justify="center" alignItems="center">
+    <EntityAccount
+      activeStep={activeStep} 
+      handleBack={handleBack}
+      handleNext={handleNext}
+      steps={steps}
+    />
+  {/* <Grid container spacing={3} direction="row" justify="center" alignItems="center">
     <Grid item md={6}>
       <Grid container justify="center">
         <div className={classes.instructions}>{getStepContent(activeStep)}</div>
@@ -94,7 +100,7 @@ export default function LandingPage(props) {
             </Box>
       </Grid>
     </Grid>
-    </Grid>
+    </Grid> */}
     </Container>
     </div>
   );

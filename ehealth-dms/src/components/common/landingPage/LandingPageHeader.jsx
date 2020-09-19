@@ -5,6 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Usestyles } from 'components';
 import Container from '@material-ui/core/Container';
+import IconButton from '@material-ui/core/IconButton';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const HeaderTextTypography = withStyles((theme) => ({
   root: {
@@ -26,10 +28,10 @@ export default function LandingPageHeader() {
     <div className={classes.grow}>
       <AppBar className={classes.background} position="static">
         <Toolbar>
-        <Container fixed maxWidth="md">
-          <HeaderTextTypography variant="h6" className={classes.grow}>
+        <Container fixed maxWidth="md"  className={classes.grow}>
+          <HeaderTextTypography edge="start" variant="h6">
             SDG Team 341-A
-          </HeaderTextTypography>
+          </HeaderTextTypography>       
           </Container>
         </Toolbar>
       </AppBar>

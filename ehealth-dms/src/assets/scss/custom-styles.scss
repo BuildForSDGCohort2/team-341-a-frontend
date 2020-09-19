@@ -178,3 +178,26 @@ html, body {
     font-weight: 600;
   }
 }
+.login-toggler {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3px !important;
+  color: #4B515D;
+  margin-bottom: 0 !important;
+
+  a {
+    font-size: 0.90rem !important;
+    font-weight: 600;
+  }
+}
+.login-individual {
+  display: flex;
+  justify-content: flex-end !important;
+  margin-bottom: 3px !important;
+  color: #4B515D;
+  margin-top: 0 !important;
+  a {
+    font-size: 0.90rem !important;
+    font-weight: 600;
+  }
+}

@@ -11,16 +11,22 @@ import AddHospital from '../views/hospital/AddHospital';
 import InitEmployee from '../views/employee/InitEmployee';
 import AdminUser from '../views/adminUser/Admin';
 import CustomStepper from './common/stepper/CustomStepper';
-
+import EntityAccount from './general/accounts/EntityAccount';
+import IndividualAccount from './general/accounts/IndividualAccount';
+import Login from './general/login/Login';
 export {
     EhealthLayout,
     Footer,
     AddHospital,
     InitEmployee,
     AdminUser,
+    Login,
     LandingPage,
     Usestyles,
     CustomStepper,
+    EntityAccount,
+    IndividualAccount,
+
 
     CustomizedMenus,
     RenderMobileMenu,

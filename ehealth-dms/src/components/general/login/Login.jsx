@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Avatar from '@material-ui/core/Avatar/Avatar';
-import Typography from '@material-ui/core/Typography/Typography';
-import { Usestyles } from '../../components';
+import { Usestyles } from 'components';
 import Grid from '@material-ui/core/Grid';
 import { FormControlLabel, Checkbox } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
@@ -11,21 +10,22 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
-import { CustomInputs } from '../../components/general/customStyles/CustomStyles';
+import { CustomInputs } from '../customStyles/CustomStyles';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import Link from '@material-ui/core/Link';
 
 
-class AdminUser extends Component {
+class Login extends Component {
   render() {
     return (
       <>
-        <AddAdminUser />
+        <AddLoginComponent />
       </>
     );
   }
 }
 
-function AddAdminUser() {
+function AddLoginComponent() {
   const classes = Usestyles();
   const [values, setValues] = React.useState({
     fullname: '',
@@ -34,7 +34,7 @@ function AddAdminUser() {
     phone: '',
     showPassword: false,
   });
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState(false);
 
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
@@ -55,10 +55,6 @@ function AddAdminUser() {
             <Avatar className={classes.avatar}>
               <VpnKeyIcon />
             </Avatar>
-        <Typography component="h1" variant="h3">
-          <label className="custom-label">Create Login Credential</label>
-        </Typography>
-
         <form className={classes.hospitalFormRoot}>
           <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -92,22 +88,15 @@ function AddAdminUser() {
                           labelWidth={70}
                   />
             </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-            <CustomInputs
-              id="confirmPassword"
-              label="Confirm Password"
-              name="confirmPassword"
-              type="password"
-            />
+            <p className="login-toggler">Forgot<Link underline="none" href="#" color="secondary">&nbsp;Password?</Link></p>
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
               className={classes.checkboxLabel}
                 defaultChecked
-                control={<Checkbox value="sendEmails" checked={checked}
+                control={<Checkbox value="login" checked={checked}
                 onChange={handleCheckChanged} />}
-                label= 'An email will be sent to this user to complete registration.'
+                label= 'Remember me'
               />
             </Grid>
           </Grid>
@@ -116,4 +105,4 @@ function AddAdminUser() {
   );
 }
 
-export default AdminUser;
+export default Login;
