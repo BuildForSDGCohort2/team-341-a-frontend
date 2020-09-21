@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Usestyles } from 'components';
-import { countries } from "../../../variables/countries.jsx";
-import {CustomInputs, CustomSelect} from '../customStyles/CustomStyles';
+import { Usestyles, IndividualAccountStepper, AccountPageHeader } from 'components';
+import { countries } from "../../../../variables/countries.jsx";
+import {CustomInputs, CustomSelect} from '../../customStyles/CustomStyles';
 import { Avatar, Typography, Grid } from "@material-ui/core";
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import { FormControlLabel, Checkbox } from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { FormControlLabel, Checkbox, Button } from '@material-ui/core';
 import Link from '@material-ui/core/Link';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
@@ -13,6 +13,9 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
+import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 export default function IndividualAccount() {
@@ -74,9 +77,25 @@ export default function IndividualAccount() {
     e.preventDefault();
   };
   return (
+  <div className={classes.landingPageStyling} >
+    <AccountPageHeader />
+    <Grid item xs={12}>
+      <Paper className={classes.headerStepper} elevation={0}>
+          <IndividualAccountStepper />
+      </Paper>
+    </Grid>
+    <Grid item xs={12}>
+      <Paper className={classes.headerDescription} elevation={0}>
+      <Container fixed maxWidth="md">
+        <p className="iheading-description">SDG Cohort 2 Project<br/><span>eHealth Delivery Management System</span><br/>Your healthcare solution</p>
+      </Container>
+      </Paper>
+    </Grid>
+<Container fixed className={classes.IAccountContainerRoot} maxWidth="sm">
+    <CssBaseline />
   <div className={classes.formPaper}>
     <Avatar className={classes.avatar}>
-        <AccountBalanceIcon />
+        <AccountCircleIcon />
     </Avatar>
     <Typography component="h1" variant="h5">
     <label className="custom-label">Basic Info</label>
@@ -84,8 +103,7 @@ export default function IndividualAccount() {
     <form className={classes.hospitalFormRoot}>
       <Grid className={classes.textField} container spacing={2}>
         <Grid item xs={12}>
-        <p className="login-individual">An Institution? <Link underline="none" href="#" color="secondary">&nbsp;Create Account here</Link></p>
-          <CustomInputs
+        <CustomInputs
           id="fullname"
           label="Full name"
           name="fullname"
@@ -124,6 +142,7 @@ export default function IndividualAccount() {
           value={formData.email}
           onChange={handleFormValueChange}
         />
+       </Grid>
         <Grid item xs={12}>
               <FormControl fullWidth variant="outlined" className={classes.passwordRoot}>
                   <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
@@ -147,28 +166,41 @@ export default function IndividualAccount() {
                     labelWidth={70}
                   />
             </FormControl>
-            </Grid>
-            <Grid item xs={12}>
+          </Grid>
+          <Grid item xs={12}>
             <CustomInputs
               id="confirmPassword"
               label="Confirm Password"
               name="confirmPassword"
               type="password"
             />
-            <p className="login-toggler">Already have an Account? <Link underline="none" href="#" color="secondary">&nbsp;Login </Link></p>
-            </Grid>
-         </Grid>
+            <p className="login-individual">An Institution? <Link underline="none" href="/legal-entity-account" color="secondary">&nbsp;Create Account here</Link></p>        
+             </Grid>
         <Grid item xs={12}>
-              <FormControlLabel
-                className={classes.checkboxLabel}
-                defaultChecked
-                control={<Checkbox value="agree" checked={checked}
-                onChange={handleCheckChanged} />}
-                label= 'By continuing, I agree to terms and conditions'
-              />
-            </Grid>
+          <FormControlLabel
+            className={classes.checkboxLabel}
+            defaultChecked
+            control={<Checkbox value="agree" checked={checked}
+            onChange={handleCheckChanged} />}
+            label= {'By continuing, I agree to Terms of Service and Privacy Policy'} 
+          />
+        </Grid>
       </Grid>
+      <Button
+          type="submit"
+          fullWidth
+          size="large"
+          variant="outlined"
+          color="secondary"
+          className={classes.submit}
+        >
+          Sign Up
+      </Button>
+      <hr />
+      <p className="login-toggler">Already have an Account? <Link underline="none" href="/login" color="secondary">&nbsp;Login </Link></p>      
     </form>
-    </div>
+  </div>
+</Container>
+</div>
   );
 }

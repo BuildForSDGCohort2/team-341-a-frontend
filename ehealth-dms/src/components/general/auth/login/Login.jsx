@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Avatar from '@material-ui/core/Avatar/Avatar';
-import { Usestyles } from 'components';
+import { Usestyles, AccountPageHeader } from 'components';
 import Grid from '@material-ui/core/Grid';
-import { FormControlLabel, Checkbox } from '@material-ui/core';
+import { FormControlLabel, Checkbox, Button } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import FormControl from '@material-ui/core/FormControl';
@@ -10,9 +10,11 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
-import { CustomInputs } from '../customStyles/CustomStyles';
+import { CustomInputs } from '../../customStyles/CustomStyles';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import Link from '@material-ui/core/Link';
+import Container from '@material-ui/core/Container';
+import { Paper, Typography, Box } from '@material-ui/core';
 
 
 class Login extends Component {
@@ -51,10 +53,31 @@ function AddLoginComponent() {
     setChecked(e.target.checked);
   };
   return (
-      <div className={classes.formPaper}>
-            <Avatar className={classes.avatar}>
-              <VpnKeyIcon />
-            </Avatar>
+    <div className="bgimg" >
+    <AccountPageHeader />
+    <Grid item xs={12}>
+      <Paper className={classes.loginDescription} elevation={0}>
+      <Container fixed maxWidth="md">
+        <p className="login-heading-description">SDG Cohort 2 Project<br/><span>eHealth Delivery Management System</span><br/>Your healthcare solution</p>
+      </Container>
+      </Paper>
+    </Grid>
+    <Container fixed className={classes.loginContainerRoot} maxWidth="sm">
+    <Paper className={"loginPaper"} style={{backgroundColor: "rgba(255, 255, 255, 0.75)"}}>
+      <Grid 
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        alignContent="center"
+      >
+
+          <Avatar className={classes.avatar}>
+            <VpnKeyIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            <label className="custom-label">Sign In</label>
+          </Typography>
         <form className={classes.hospitalFormRoot}>
           <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -88,20 +111,42 @@ function AddLoginComponent() {
                           labelWidth={70}
                   />
             </FormControl>
-            <p className="login-toggler">Forgot<Link underline="none" href="#" color="secondary">&nbsp;Password?</Link></p>
-            </Grid>
+           </Grid>
+
             <Grid item xs={12}>
+            <Box display="flex" justifyContent="space-between" className={classes.loginBox}>
+            <Box>
               <FormControlLabel
-              className={classes.checkboxLabel}
+              className={classes.loginCheckboxLabel}
                 defaultChecked
                 control={<Checkbox value="login" checked={checked}
                 onChange={handleCheckChanged} />}
                 label= 'Remember me'
               />
-            </Grid>
+              </Box>
+              <Box>
+              <p className="forgot-password">Forgot<Link underline="none" href="/reset-password" color="secondary">&nbsp;Password?</Link></p>            
+              </Box>
+              </Box>
+               </Grid>
           </Grid>
-        </form>
-      </div>
+          <Button
+          type="submit"
+          fullWidth
+          size="large"
+          variant="outlined"
+          color="secondary"
+          className={classes.submit}
+        >
+          Login
+      </Button>
+      <hr/>
+      <p className="login-toggler">Dont have an account?<Link underline="none" href="/individual-account" color="secondary">&nbsp;Register Here?</Link></p>
+    </form>
+  </Grid>
+  </Paper>
+  </Container>
+  </div>
   );
 }
 

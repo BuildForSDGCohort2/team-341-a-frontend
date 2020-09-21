@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Avatar from '@material-ui/core/Avatar/Avatar';
 import Typography from '@material-ui/core/Typography/Typography';
-import { Usestyles } from '../../components';
+import { Usestyles } from 'components';
 import Grid from '@material-ui/core/Grid';
 import { FormControlLabel, Checkbox } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
@@ -72,24 +72,24 @@ function AddAdminUser() {
             <Grid item xs={12}>
               <FormControl fullWidth variant="outlined" className={classes.passwordRoot}>
                   <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                      <OutlinedInput
-                          id="outlined-adornment-password"
-                          type={values.showPassword ? 'text' : 'password'}
-                          value={values.password}
-                          onChange={handleChange('password')}
-                          endAdornment={
-                          <InputAdornment position="end">
-                              <IconButton
-                              aria-label="toggle password visibility"
-                              onClick={handleClickShowPassword}
-                              onMouseDown={handleMouseDownPassword}
-                              edge="end"
-                              >
-                              {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                              </IconButton>
-                          </InputAdornment>
-                          }
-                          labelWidth={70}
+                  <OutlinedInput
+                      id="outlined-adornment-password"
+                      type={values.showPassword ? 'text' : 'password'}
+                      value={values.password}
+                      onChange={handleChange('password')}
+                      endAdornment={
+                      <InputAdornment position="end">
+                          <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                          >
+                          {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                      </InputAdornment>
+                      }
+                      labelWidth={70}
                   />
             </FormControl>
             </Grid>

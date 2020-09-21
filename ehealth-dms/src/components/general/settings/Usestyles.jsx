@@ -178,9 +178,35 @@ const drawerWidth = 240;
       textAlign: 'center',
       marginTop: theme.spacing(-7)
     },
-    stepperBackground: {
+    eStepperBackground: {
       backgroundColor: "transparent",
       paddingBottom: theme.spacing(1),
+      paddingLeft: theme.spacing(16),
+      paddingRight: theme.spacing(16),
+      "& .MuiStepLabel-label": {
+        fontSize: "0.85rem !important",
+        fontWeight: "600 !important"
+      },
+      [theme.breakpoints.down('sm')]: {
+        "& .MuiStepLabel-label": {
+          display: "none"
+        },
+      },
+    },
+    iStepperBackground: {
+      backgroundColor: "transparent",
+      paddingBottom: theme.spacing(1),
+      paddingLeft: theme.spacing(20),
+      paddingRight: theme.spacing(20),
+      "& .MuiStepLabel-label": {
+        fontSize: "0.85rem !important",
+        fontWeight: "600 !important"
+      },
+      [theme.breakpoints.down('sm')]: {
+        "& .MuiStepLabel-label": {
+          display: "none"
+        },
+      },
     },
     passwordRoot: {
       "& .MuiOutlinedInput-input": {
@@ -191,9 +217,18 @@ const drawerWidth = 240;
     },
     checkboxLabel: {
       '& .MuiFormControlLabel-label': {
-        color: "#1c2a48",
+        fontWeight: 500,
+        fontSize: '0.80rem',
+        textAlign: 'left !important',
+        justifyContent: 'flex-start !important',
+        marginTop: "0 !important",
+      }
+    },
+    loginCheckboxLabel: {
+      '& .MuiFormControlLabel-label': {
         fontWeight: 500,
         fontSize: '0.95rem',
+        alignItems: 'center !important',
       }
     },
     headerStepper: {
@@ -213,6 +248,23 @@ const drawerWidth = 240;
       paddingTop: theme.spacing(0),
       backgroundColor: "#d0d6e2"
     },
+    loginDescription: {
+      width: '100%',
+      flexGrow: 1,
+      paddingTop: theme.spacing(0),
+      backgroundColor: "transparent"
+    },
+    IAccountContainerRoot: {
+      textAlign: 'center',
+      marginTop: theme.spacing(3)
+    },
+    loginContainerRoot: {
+      textAlign: 'center',
+      marginTop: theme.spacing(3)
+    },
+    loginBox: {
+      padding: theme.spacing(0, 2)
+    }
   }));
 
 export default Usestyles;

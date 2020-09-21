@@ -1,10 +1,12 @@
 import React, { Component, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar/Avatar';
-import { Usestyles } from '../../components';
+import { Usestyles } from 'components';
 import Grid from '@material-ui/core/Grid';
 import {CustomInputs, CustomSelect} from '../../components/general/customStyles/CustomStyles';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Typography from '@material-ui/core/Typography/Typography';
+// import { CustomInputs } from "../../components/general/customStyles/CustomInputs";
+// import { CustomSelect } from "../../components/general/customStyles/CustomSelect";
 
 class InitEmployee extends Component {
   render() {

@@ -17,20 +17,19 @@ const HeaderTextTypography = withStyles((theme) => ({
       fontWeight: 600,
       fontSize: '1.5rem',
       textAlign: 'left',
-      paddingLeft: '4rem'
   },
 }))(Typography);
 
-export default function LandingPageHeader() {
+export default function AccountPageHeader() {
   const classes = Usestyles();
 
   return (
     <div className={classes.grow}>
       <AppBar className={classes.background} position="static">
         <Toolbar>
-        <Container fixed maxWidth="md"  className={classes.grow}>
+        <Container fixed maxWidth="sm"  className={classes.grow}>
           <HeaderTextTypography edge="start" variant="h6">
-            SDG Team 341-A
+            Team 341 - A
           </HeaderTextTypography>       
           </Container>
         </Toolbar>

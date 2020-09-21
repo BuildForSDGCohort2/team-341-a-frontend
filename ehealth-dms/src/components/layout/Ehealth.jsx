@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import eHealthRoutes from "routes/routes.jsx";
 import { LayoutComponent } from "components";
-import {LandingPage} from "components";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

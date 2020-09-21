@@ -4,7 +4,7 @@ import Avatar from "@material-ui/core/Avatar/Avatar";
 import Typography from "@material-ui/core/Typography/Typography";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import Container from "@material-ui/core/Container/Container";
-import { Usestyles } from "../../components";
+import { Usestyles } from "components";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField/TextField";
 import {

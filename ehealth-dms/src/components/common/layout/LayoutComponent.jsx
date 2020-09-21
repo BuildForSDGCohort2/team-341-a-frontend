@@ -17,10 +17,8 @@ import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 import { Link as RouterLink } from 'react-router-dom';
-import { Usestyles } from 'components';
-import { RenderMobileMenu, CustomizedMenus } from 'components';
+import { Footer, RenderMobileMenu, CustomizedMenus, Usestyles } from 'components';
 import Header from './Header';
-import { Footer } from "components";
 
 export default function LayoutComponent(props) {
   const classes = Usestyles();

@@ -6,14 +6,17 @@ import Spinner from './common/spinner/Spinner';
 import Usestyles from './general/settings/Usestyles';
 import { RenderMobileMenu } from './general/headerPopUp/HeaderPopUp';
 import { CustomizedMenus } from './general/headerPopUp/PopUp';
-import LandingPage from './common/landingPage/LandingPage';
+import LegalEntityAccountComponent from './general/auth/legalAccount/LegalEntityAccountComponent';
+import AccountPageHeader from './general/auth/legalAccount/AccountPageHeader';
 import AddHospital from '../views/hospital/AddHospital';
 import InitEmployee from '../views/employee/InitEmployee';
 import AdminUser from '../views/adminUser/Admin';
-import CustomStepper from './common/stepper/CustomStepper';
-import EntityAccount from './general/accounts/EntityAccount';
-import IndividualAccount from './general/accounts/IndividualAccount';
-import Login from './general/login/Login';
+import EntityAccountStepper from './general/auth/entityAccountStepper/EntityAccountStepper';
+import IndividualAccountStepper from './general/auth/individualAccountStepper/IndividualAccountStepper';
+import EntityAccount from './general/auth/accounts/EntityAccount';
+import IndividualAccount from './general/auth/accounts/IndividualAccount';
+import Login from './general/auth/login/Login';
+import ResetPassword from './general/auth/forgotPassword/ResetPassword';
 export {
     EhealthLayout,
     Footer,
@@ -21,11 +24,14 @@ export {
     InitEmployee,
     AdminUser,
     Login,
-    LandingPage,
+    LegalEntityAccountComponent,
     Usestyles,
-    CustomStepper,
     EntityAccount,
     IndividualAccount,
+    EntityAccountStepper,
+    IndividualAccountStepper,
+    AccountPageHeader,
+    ResetPassword,
 
 
     CustomizedMenus,

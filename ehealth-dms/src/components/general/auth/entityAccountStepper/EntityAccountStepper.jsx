@@ -12,10 +12,9 @@ import PropTypes from 'prop-types';
 import { Usestyles } from 'components';
 import Container from '@material-ui/core/Container';
 
-
 const ColorlibConnector = withStyles({
   alternativeLabel: {
-    top: 22,
+    top: 14,
   },
   active: {
     '& $line': {
@@ -30,7 +29,7 @@ const ColorlibConnector = withStyles({
     },
   },
   line: {
-    height: 3,
+    height: 2,
     border: 0,
     backgroundColor: '#eaeaf0',
     borderRadius: 1,
@@ -42,12 +41,12 @@ const useColorlibStepIconStyles = makeStyles({
     backgroundColor: '#929fba',
     zIndex: 1,
     color: '#fff',
-    width: 50,
-    height: 50,
+    width: 34,
+    height: 34,
     display: 'flex',
     borderRadius: '50%',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center',  
   },
   active: {
     backgroundImage:
@@ -88,11 +87,11 @@ ColorlibStepIcon.propTypes = {
   icon: PropTypes.node,
 };
 
-const CustomStepper = (props) => { 
+const EntityAccountStepper = (props) => { 
   const classes = Usestyles();
   return ( 
     <Container fixed maxWidth="md">
-      <Stepper alternativeLabel activeStep={props.activeStep} className={classes.stepperBackground} connector={<ColorlibConnector />}>
+      <Stepper alternativeLabel activeStep={props.activeStep} className={classes.eStepperBackground} connector={<ColorlibConnector />}>
         {props.steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
@@ -104,4 +103,4 @@ const CustomStepper = (props) => {
    );
 }
  
-export default CustomStepper;
+export default EntityAccountStepper;
