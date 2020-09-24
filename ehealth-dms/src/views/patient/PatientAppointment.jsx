@@ -8,15 +8,13 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
-import BookmarksTwoToneIcon from '@material-ui/icons/BookmarksTwoTone';
+import BookmarksTwoToneIcon from "@material-ui/icons/BookmarksTwoTone";
 import { Usestyles } from "components";
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
-import InputBase from "@material-ui/core/InputBase";
-import InputLabel from "@material-ui/core/InputLabel";
 
 class PatientAppointment extends Component {
   render() {

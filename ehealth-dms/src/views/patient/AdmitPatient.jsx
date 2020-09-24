@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import Avatar from "@material-ui/core/Avatar/Avatar";
 import Typography from "@material-ui/core/Typography/Typography";
-import HotelTwoToneIcon from '@material-ui/icons/HotelTwoTone';
+import HotelTwoToneIcon from "@material-ui/icons/HotelTwoTone";
 import Container from "@material-ui/core/Container/Container";
 import { Usestyles } from "components";
 import Grid from "@material-ui/core/Grid";
