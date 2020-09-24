@@ -8,8 +8,6 @@ import { Usestyles } from "components";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField/TextField";
 import {
-  FormControlLabel,
-  Checkbox,
   Button,
   MenuItem,
 } from "@material-ui/core";
@@ -17,6 +15,7 @@ import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
+
 class AddPatient extends Component {
   render() {
     return (
