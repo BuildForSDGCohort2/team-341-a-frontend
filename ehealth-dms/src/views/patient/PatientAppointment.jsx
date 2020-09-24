@@ -8,7 +8,7 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
-import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
+import BookmarksTwoToneIcon from '@material-ui/icons/BookmarksTwoTone';
 import { Usestyles } from "components";
 import {
   KeyboardDatePicker,
@@ -40,7 +40,7 @@ function AdmitPatient() {
     <Container component="main" maxWidth="xs">
       <div className={classes.formPaper}>
         <Avatar className={classes.avatar}>
-          <MeetingRoomIcon />
+          <BookmarksTwoToneIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Book Appointment
