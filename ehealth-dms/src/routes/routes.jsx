@@ -32,11 +32,11 @@ import EditLabResult from 'views/laboratory/EditLabResult.jsx';
 
 import AddMedicine from 'views/medicine/AddMedicine.jsx';
 import EditMedicine from 'views/medicine/EditMedicine.jsx';
-import Map from 'views/map/Map.jsx';
+import MapComponent from 'views/map/MapComponent.jsx';
 
 var eHealthRoutes = [
   {path: "/app", name: "Dashboard", icon: "speed", color: "#ffcdd2", badge: "", component: Dashboard},
-  {path: "/app/map", name: "Map", icon: "near_me", color: "#fff176", badge: "", component: Map},
+  {path: "/app/map", name: "Map", icon: "near_me", color: "#fff176", badge: "", component: MapComponent},
   {
     path: "#", name: "Hospital", icon: "local_hospital", type: "dropdown", color: "#69f0ae", parentid: "hospital",
     child: [
