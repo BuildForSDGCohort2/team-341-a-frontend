@@ -51,8 +51,7 @@ function IndividualAccount(props) {
   const [isCommiting, setIsCommiting] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
-  const [user, setUser] = useState(null);
-  const [route, setRoute] = useState(null);
+  const [user, setUser] = useState({email: null});
 
   const handleFormValueChange = ({ target: { name, value } }) => {
     let newValue = name === "contact" ? value.trim().replace(/\s+/g, "") : value;
@@ -72,7 +71,7 @@ function IndividualAccount(props) {
         : setActiveStep(1);
         setUser({email: user.email});
     })
-  },[user])
+  },[user.email])
 
   useEffect(() => {
     const provinceOptionsForCountry = (country) => {

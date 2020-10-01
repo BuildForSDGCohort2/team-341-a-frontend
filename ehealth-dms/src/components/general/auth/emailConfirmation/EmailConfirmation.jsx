@@ -53,9 +53,9 @@ function EmailConfirmation(props) {
             <Grid item xs={12}>
                 <Typography>
                     
-            <label className="custom-label-text"> We've sent an email containing a verification link to {props.user ? props.user.email : null}. It will expire shortly, so please check your email and click on the link to complete your account setup.
+            <label className="custom-label-text"> We've sent an email containing a verification link to {props.user.email}. It will expire shortly, so please check your email and click on the link to complete your account setup.
                 </label>
-                   </Typography>
+             </Typography>
             </Grid>
           </Grid>
       {error && <p className="error-text">{error.message}</p>}
