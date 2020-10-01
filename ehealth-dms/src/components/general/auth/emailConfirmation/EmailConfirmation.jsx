@@ -5,8 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import Link from '@material-ui/core/Link';
 import { Paper, Typography, Box } from '@material-ui/core';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
 import { withFirebase  } from '../../../../firebase';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
@@ -55,7 +53,7 @@ function EmailConfirmation(props) {
             <Grid item xs={12}>
                 <Typography>
                     
-            <label className="custom-label-text"> We've sent an email containing a verification link to {props.user.email}. It will expire shortly, so please check your email and click on the link to complete your account setup.
+            <label className="custom-label-text"> We've sent an email containing a verification link to {props.user ? props.user.email : null}. It will expire shortly, so please check your email and click on the link to complete your account setup.
                 </label>
                    </Typography>
             </Grid>
