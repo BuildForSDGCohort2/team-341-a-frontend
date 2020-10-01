@@ -25,7 +25,7 @@ import { compose } from 'recompose';
 function getSteps() {
   return ['Create Account', 'Confirm Email'];
 }
-// const userData = JSON.parse(localStorage.getItem('eHealthUser'));
+const userData = JSON.parse(localStorage.getItem('eHealthUser'));
 function IndividualAccount(props) {
   const countryList = countries.map((item, i) => {
     return item.country
@@ -66,10 +66,12 @@ function IndividualAccount(props) {
   };
   useEffect(() => {
     props.firebase.auth.onAuthStateChanged(user => {
-      (user && user.emailVerified) 
+      if (user) {
+        user.emailVerified
         ? props.history.push('/')
         : setActiveStep(1);
         setUser({email: user.email});
+      }
     })
   },[user.email])
 
@@ -127,7 +129,7 @@ function IndividualAccount(props) {
   function handlePasswordMatched() {
     setPasswordMatched(formData.password !== formData.confirmPassword);
   }
-
+  
   return (
   <div className={classes.landingPageStyling} >
     <AccountPageHeader />

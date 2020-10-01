@@ -30,7 +30,6 @@ function EmailConfirmation(props) {
         setError(err);
       });
   };
-
   return (
     <div className="animate-email-paper">
     <div className={classes.emaimConfirm}>
