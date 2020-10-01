@@ -1,5 +1,5 @@
 
-const displayLocation = (latitude,longitude) => {
+export const displayLocation = (latitude,longitude) => {
     return new Promise(function (resolve, reject) {
     var request = new XMLHttpRequest();
     var method = 'GET';
@@ -8,8 +8,8 @@ const displayLocation = (latitude,longitude) => {
 
     request.open(method, url, async);
     request.onreadystatechange = () => {
-      if(request.readyState == 4) {
-        if (request.status == 200) {
+      if(request.readyState === 4) {
+        if (request.status === 200) {
           var data = JSON.parse(request.responseText);
           var address = data.results[4];
           resolve(address);
@@ -42,7 +42,21 @@ const displayLocation = (latitude,longitude) => {
       case 3:
         errorMessage = 'Timeout';
         break;
+      default:
+      errorMessage = errorMessage;
+      break;
     }
     console.error(errorMessage);
   };
+
+  export const getMapData = (dataFn, errFn) => {
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 1000,
+        maximumAge: 0
+      };
+      if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(dataFn, errFn, options);
+      }
+  }
 

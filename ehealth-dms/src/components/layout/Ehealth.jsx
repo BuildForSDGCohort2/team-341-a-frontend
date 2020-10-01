@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import eHealthRoutes from "routes/routes.jsx";
 import { LayoutComponent } from "components";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { withFirebase } from '../../firebase';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,8 +24,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EhealthLayout(props) {
+function EhealthLayout(props) {
   const classes = useStyles();
+
+  const [authUser, setAuthUser] = useState(null);
+
+  useEffect(() => {
+    props.firebase.auth.onAuthStateChanged(user => {
+      user
+        ? setAuthUser(user)
+        : setAuthUser(null);
+    });
+  }, [authUser]);
 
     return (
       <div
@@ -39,7 +51,7 @@ export default function EhealthLayout(props) {
                   <Route
                     path={prop.path}
                     render={(props) => (
-                      <prop.component {...props} />
+                      <prop.component {...props}  userInfo={authUser} />
                     )}
                     key={key}
                   />
@@ -52,3 +64,4 @@ export default function EhealthLayout(props) {
       </div>
     );
 }
+export default withFirebase(EhealthLayout);

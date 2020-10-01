@@ -80,6 +80,9 @@ export function CustomInputs(props) {
         InputProps={{
           classes: { input: useStyles().input}
         }}
+        helperText={props.errorText}
+        error={props.error}
+        onBlur={ props.fieldBlur }
       />
 }
 

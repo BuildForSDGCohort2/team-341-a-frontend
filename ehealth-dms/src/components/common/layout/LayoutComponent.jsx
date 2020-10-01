@@ -115,6 +115,7 @@ export default function LayoutComponent(props) {
         anchorEl={anchorEl}
         handleClose={handleMenuClose}
         listItems={subMenu}
+        // handleSignOut = {signOut}
       />
       <Drawer
         variant= "permanent"

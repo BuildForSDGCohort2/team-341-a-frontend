@@ -47,7 +47,7 @@ function AddResetComponent() {
       </Paper>
     </Grid>
     <Container fixed className={classes.loginContainerRoot} maxWidth="sm">
-    <Paper className={"loginPaper"} style={{backgroundColor: "rgba(255, 255, 255, 0.75)"}}>
+    <Paper className={"animate-paper"} style={{backgroundColor: "rgba(255, 255, 255, 0.75)"}}>
       <Grid 
           container
           direction="row"

@@ -7,7 +7,6 @@ import { Usestyles } from 'components';
 class AddDepartment extends Component {
 
   render () {
-
   return ( 
        <React.Fragment>
          <NewDepartment />
@@ -19,7 +18,6 @@ class AddDepartment extends Component {
 
 function NewDepartment() {
   const classes = Usestyles()
-
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.formPaper}>

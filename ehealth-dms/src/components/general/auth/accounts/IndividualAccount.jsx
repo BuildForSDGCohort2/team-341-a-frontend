@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Usestyles, IndividualAccountStepper, AccountPageHeader } from 'components';
+import { Usestyles, IndividualAccountStepper, AccountPageHeader, EmailConfirmation } from 'components';
 import { countries } from "../../../../variables/countries.jsx";
 import {CustomInputs, CustomSelect} from '../../customStyles/CustomStyles';
 import { Avatar, Typography, Grid } from "@material-ui/core";
@@ -16,28 +16,43 @@ import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { withFirebase  } from '../../../../firebase';
+import { withRouter } from 'react-router-dom';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import { compose } from 'recompose';
 
 
-export default function IndividualAccount() {
+function getSteps() {
+  return ['Create Account', 'Confirm Email'];
+}
+// const userData = JSON.parse(localStorage.getItem('eHealthUser'));
+function IndividualAccount(props) {
   const countryList = countries.map((item, i) => {
     return item.country
   });
-  const initFormData =     {
+  const initFormData = {
+    fullname: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    phone: '',
+    showPassword: false,
+    avatar: '',
     country: '',
     state: '',
-    email: '',
+    city: '',
+    error: null
     }
   const classes = Usestyles();
   const [provinceList, setProvinceList] = useState([]);
   const [formData, setFormData] = useState(initFormData);
-  const [checked, setChecked] = React.useState(false);
-  const [values, setValues] = React.useState({
-    fullname: '',
-    email: '',
-    password: '',
-    phone: '',
-    showPassword: false,
-  });
+  const [checked, setChecked] = useState(false);
+  const [passwordMatched, setPasswordMatched] = useState(false);
+  const [isCommiting, setIsCommiting] = useState(false);
+  const [activeStep, setActiveStep] = useState(0);
+  const steps = getSteps();
+  const [user, setUser] = useState(null);
+  const [route, setRoute] = useState(null);
 
   const handleFormValueChange = ({ target: { name, value } }) => {
     let newValue = name === "contact" ? value.trim().replace(/\s+/g, "") : value;
@@ -45,7 +60,20 @@ export default function IndividualAccount() {
       ...s,
       [name]: newValue,
     }));
+    
+    if (passwordMatched && name === "confirmPassword") {
+      setPasswordMatched(formData.password !== value);
+    }
   };
+  useEffect(() => {
+    props.firebase.auth.onAuthStateChanged(user => {
+      (user && user.emailVerified) 
+        ? props.history.push('/')
+        : setActiveStep(1);
+        setUser({email: user.email});
+    })
+  },[user])
+
   useEffect(() => {
     const provinceOptionsForCountry = (country) => {
       let plist = [];
@@ -66,22 +94,50 @@ export default function IndividualAccount() {
   };
 
   const handleChange = (prop) => (e) => {
-    setValues({ ...values, [prop]: e.target.value });
+    setFormData({ ...formData, [prop]: e.target.value });
   };
 
   const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
+    setFormData({ ...formData, showPassword: !formData.showPassword });
   };
 
   const handleMouseDownPassword = (e) => {
     e.preventDefault();
   };
+  const onSubmit = (e) => { 
+    e.preventDefault();
+    setIsCommiting(true);
+    props.firebase
+      .createUser(formData)
+      .then(authUser => {
+        setUser({email: formData.email});
+        setFormData(initFormData);
+        setIsCommiting(false);
+        handleNext();
+      })
+      .catch(err => {
+        setIsCommiting(false);
+        setFormData({...formData, error: err});
+      });
+  }
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  function handlePasswordMatched() {
+    setPasswordMatched(formData.password !== formData.confirmPassword);
+  }
+
   return (
   <div className={classes.landingPageStyling} >
     <AccountPageHeader />
     <Grid item xs={12}>
       <Paper className={classes.headerStepper} elevation={0}>
-          <IndividualAccountStepper />
+          <IndividualAccountStepper
+            steps={steps}
+            activeStep={activeStep}
+           />
       </Paper>
     </Grid>
     <Grid item xs={12}>
@@ -91,7 +147,8 @@ export default function IndividualAccount() {
       </Container>
       </Paper>
     </Grid>
-<Container fixed className={classes.IAccountContainerRoot} maxWidth="sm">
+  {activeStep === 0 ? (
+  <Container fixed className={classes.IAccountContainerRoot} maxWidth="sm">
     <CssBaseline />
   <div className={classes.formPaper}>
     <Avatar className={classes.avatar}>
@@ -100,7 +157,7 @@ export default function IndividualAccount() {
     <Typography component="h1" variant="h5">
     <label className="custom-label">Basic Info</label>
     </Typography>
-    <form className={classes.hospitalFormRoot}>
+    <form className={classes.hospitalFormRoot} onSubmit={onSubmit}>
       <Grid className={classes.textField} container spacing={2}>
         <Grid item xs={12}>
         <CustomInputs
@@ -108,8 +165,22 @@ export default function IndividualAccount() {
           label="Full name"
           name="fullname"
           type="text"
+          value={formData.fullname}
+          onChange={handleFormValueChange}
+          required
           />
         </Grid>
+        <Grid item xs={12}>
+        <CustomInputs 
+          id="email"
+          label="Email"
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleFormValueChange}
+          required
+        />
+       </Grid>
      <Grid item xs={12}>
       <CustomSelect 
         value={formData.country}
@@ -119,6 +190,7 @@ export default function IndividualAccount() {
         defaultValue="Select Country"
         name= 'country'
         id='country'
+        required
       />
       </Grid>
       <Grid item xs={12}>
@@ -130,17 +202,19 @@ export default function IndividualAccount() {
           defaultValue="Select State"
           name= 'state'
           id='state'
+          required
         />
         </Grid>
 
         <Grid item xs={12}>
         <CustomInputs 
-          id="email"
-          label="Email"
-          name="email"
-          type="email"
-          value={formData.email}
+          id="city"
+          label="City"
+          name="city"
+          type="text"
+          value={formData.city}
           onChange={handleFormValueChange}
+          required
         />
        </Grid>
         <Grid item xs={12}>
@@ -148,9 +222,10 @@ export default function IndividualAccount() {
                   <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
                     id="outlined-adornment-password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.password}
+                    type={formData.showPassword ? 'text' : 'password'}
+                    value={formData.password}
                     onChange={handleChange('password')}
+                    required
                     endAdornment={
                     <InputAdornment position="end">
                         <IconButton
@@ -159,7 +234,7 @@ export default function IndividualAccount() {
                         onMouseDown={handleMouseDownPassword}
                         edge="end"
                         >
-                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                        {formData.showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                     </InputAdornment>
                     }
@@ -173,6 +248,12 @@ export default function IndividualAccount() {
               label="Confirm Password"
               name="confirmPassword"
               type="password"
+              value={formData.confirmPassword}
+              onChange={handleFormValueChange}
+              required           
+              error={passwordMatched}
+              fieldBlur={handlePasswordMatched}
+              errorText={passwordMatched ? 'Password mismatched!' : null}
             />
             <p className="login-individual">An Institution? <Link underline="none" href="/legal-entity-account" color="secondary">&nbsp;Create Account here</Link></p>        
              </Grid>
@@ -193,14 +274,19 @@ export default function IndividualAccount() {
           variant="outlined"
           color="secondary"
           className={classes.submit}
+          disabled={!checked}
         >
           Sign Up
       </Button>
+      {formData.error && <p className="error-text">{formData.error.message}</p>}
+      {isCommiting && <LinearProgress /> }
       <hr />
       <p className="login-toggler">Already have an Account? <Link underline="none" href="/login" color="secondary">&nbsp;Login </Link></p>      
     </form>
   </div>
-</Container>
+   </Container>) : <EmailConfirmation user={user} /> }
 </div>
   );
 }
+
+export default compose(withRouter,withFirebase)(IndividualAccount);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import "assets/scss/custom-styles.scss";
@@ -8,7 +8,8 @@ import { Login } from "components";
 import indexRoutes from "./routes/index.jsx";
 import { Spinner } from "./components";
 
-function App() {
+function App(props) {
+
   return (
     <>
       <Spinner />
@@ -19,7 +20,7 @@ function App() {
               <Route
                 path={prop.path}
                 key={key}
-                render={(props) => <prop.component {...props} />}
+                render={(props) => (<prop.component {...props} />)}
               />
             );
           })}

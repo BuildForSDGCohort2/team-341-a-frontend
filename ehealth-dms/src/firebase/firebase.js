@@ -17,18 +17,39 @@ import 'firebase/auth';
       app.initializeApp(config);
       this.auth = app.auth();
     }
-    doCreateUserWithEmailAndPassword = (email, password) =>
-    this.auth.createUserWithEmailAndPassword(email, password);
+    createUser = (formData) => 
+    this.auth.createUserWithEmailAndPassword(formData.email, formData.password)
+    .then(respond => {
+      respond.user.updateProfile({
+        displayName: formData.fullname,
+        photoURL: JSON.stringify({
+          photo: formData.avatar,
+          phone: formData.phone,
+          country: formData.country,
+          state: formData.state,
+          city: formData.city,
+        })
+      })
+      .then(() => respond.user.sendEmailVerification())
+      localStorage.setItem('eHealthUser', JSON.stringify({email:respond.user.email, uid: respond.user.uid}));
+    })
+    resendEmailVerification = (user) => {
+      if (user)
+        return this.auth.currentUser.sendEmailVerification();      
+    }
 
-    doSignInWithEmailAndPassword = (email, password) =>
+    signIn = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
 
-    doSignOut = () => this.auth.signOut();
+    signOut = () => this.auth.signOut()
+    .then(() => window.location.href = '/');
 
-    doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+    passwordReset = email => this.auth.sendPasswordResetEmail(email);
  
-  doPasswordUpdate = password =>
+  passwordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
+
+    getCurrentUser = () => this.auth.onAuthStateChanged(user => user);
   }
    
   export default Firebase;

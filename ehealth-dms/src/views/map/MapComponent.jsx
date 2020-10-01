@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import { successCallback , errorCallback } from '../../helper/googleRequest';
+import { getMapData, displayLocation, errorCallback } from '../../helper/googleRequest';
 
 const mapStyles = {
   width: '100%',
@@ -20,16 +20,8 @@ class MapComponent extends Component {
       showPopup: true
     });
     componentDidMount() {
-      var options = {
-        enableHighAccuracy: true,
-        timeout: 1000,
-        maximumAge: 0
-      };
-      if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
-      }
-    
-    }
+      // getMapData(this.locData, errorCallback)
+    } 
     onClose = props => {
       if (this.state.showPopup) {
         this.setState({
@@ -38,7 +30,13 @@ class MapComponent extends Component {
         });
       }
     };
-    
+    locData = (position) => {
+      var x = position.coords.latitude;
+      var y = position.coords.longitude;
+      displayLocation(x,y)
+      .then(res => console.log(res));
+    };
+
   render () {
 
   return ( 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { AddHospital, InitEmployee, AdminUser, Usestyles } from 'components';
@@ -6,9 +6,6 @@ import Box from '@material-ui/core/Box';
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 
-function getSteps() {
-  return ['Register your Hospital', 'Add Admin User', 'Create Admin Login'];
-}
 
 function getStepContent(stepIndex) {
   switch (stepIndex) {

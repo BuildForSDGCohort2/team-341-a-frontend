@@ -16,6 +16,7 @@ import IndividualAccountStepper from './general/auth/individualAccountStepper/In
 import EntityAccount from './general/auth/accounts/EntityAccount';
 import IndividualAccount from './general/auth/accounts/IndividualAccount';
 import Login from './general/auth/login/Login';
+import EmailConfirmation from './general/auth/emailConfirmation/EmailConfirmation';
 import ResetPassword from './general/auth/forgotPassword/ResetPassword';
 export {
     EhealthLayout,
@@ -24,6 +25,7 @@ export {
     InitEmployee,
     AdminUser,
     Login,
+    EmailConfirmation,
     LegalEntityAccountComponent,
     Usestyles,
     EntityAccount,
@@ -32,7 +34,6 @@ export {
     IndividualAccountStepper,
     AccountPageHeader,
     ResetPassword,
-
 
     CustomizedMenus,
     RenderMobileMenu,

@@ -264,6 +264,38 @@ const drawerWidth = 240;
     },
     loginBox: {
       padding: theme.spacing(0, 2)
+    },
+    formError: {
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+        borderColor: 'red',
+        border: '1px solid'
+        },
+        '&:hover fieldset': {
+           borderColor: '#ffffff',
+          },
+          '&.Mui-focused fieldset': {
+          borderColor: '#ffffff',
+          }
+    }
+  },
+    centerPaper: {
+      padding: theme.spacing(2),
+      display: 'flex',
+      flexDirection: "column",
+      alignItems: 'center',
+      textAlign: 'center'
+    },
+    emaimConfirm: {
+      display: 'flex',
+      flexDirection: "column",
+      alignItems: 'center',
+      textAlign: 'center',
+    '& > *': {
+      margin: theme.spacing(1),
+      width: theme.spacing(60),
+      height: theme.spacing(50),
+    },
     }
   }));
 

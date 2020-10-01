@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Avatar from '@material-ui/core/Avatar/Avatar';
 import { Usestyles, AccountPageHeader } from 'components';
 import Grid from '@material-ui/core/Grid';
@@ -15,28 +15,31 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
 import { Paper, Typography, Box } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
+import { withFirebase  } from '../../../../firebase';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 
-
-class Login extends Component {
-  render() {
-    return (
-      <>
-        <AddLoginComponent />
-      </>
-    );
-  }
+function CustomSnackBar(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function AddLoginComponent() {
-  const classes = Usestyles();
-  const [values, setValues] = React.useState({
-    fullname: '',
+function LoginComponent(props) {
+
+  const initState = {
     email: '',
     password: '',
-    phone: '',
     showPassword: false,
-  });
-  const [checked, setChecked] = React.useState(false);
+    error: null
+  }
+
+  const classes = Usestyles();
+  const [values, setValues] = useState(initState);
+  const [checked, setChecked] = useState(false);
+  const [isCommiting, setIsCommiting] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleChange = (prop) => (e) => {
     setValues({ ...values, [prop]: e.target.value });
@@ -52,6 +55,34 @@ function AddLoginComponent() {
  const handleCheckChanged = (e) => {
     setChecked(e.target.checked);
   };
+  const onSubmit = e => {  
+    e.preventDefault();
+    setIsCommiting(true);
+    props.firebase
+      .signIn(values.email, values.password)
+      .then((data) => {
+        if (data.user.emailVerified) {
+          setValues(initState);
+          localStorage.removeItem('eHealthUser');
+          props.history.push('/app');
+          setIsCommiting(false);
+        } else {
+          setOpen(true);
+          setIsCommiting(false);
+        }
+      })
+      .catch(err => {
+        setIsCommiting(false);
+        setValues({...values, error: err});
+      });
+  };
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
   return (
     <div className="bgimg" >
     <AccountPageHeader />
@@ -63,7 +94,7 @@ function AddLoginComponent() {
       </Paper>
     </Grid>
     <Container fixed className={classes.loginContainerRoot} maxWidth="sm">
-    <Paper className={"loginPaper"} style={{backgroundColor: "rgba(255, 255, 255, 0.75)"}}>
+    <Paper className={"animate-paper"} style={{backgroundColor: "rgba(255, 255, 255, 0.75)"}}>
       <Grid 
         container
         direction="row"
@@ -78,14 +109,16 @@ function AddLoginComponent() {
           <Typography component="h1" variant="h5">
             <label className="custom-label">Sign In</label>
           </Typography>
-        <form className={classes.hospitalFormRoot}>
+        <form className={classes.hospitalFormRoot} onSubmit={onSubmit}>
           <Grid container spacing={2}>
           <Grid item xs={12}>
             <CustomInputs
               id="email"
               label="Email Address"
-              name="email"
               type="email"
+              value={values.email}
+              onChange={handleChange('email')}
+              required
             />
             </Grid>
             <Grid item xs={12}>
@@ -96,6 +129,7 @@ function AddLoginComponent() {
                           type={values.showPassword ? 'text' : 'password'}
                           value={values.password}
                           onChange={handleChange('password')}
+                          required
                           endAdornment={
                           <InputAdornment position="end">
                               <IconButton
@@ -140,14 +174,21 @@ function AddLoginComponent() {
         >
           Login
       </Button>
+      {values.error && <p className="error-text">{values.error.message}</p>}
+      {isCommiting && <LinearProgress /> }
       <hr/>
       <p className="login-toggler">Dont have an account?<Link underline="none" href="/individual-account" color="secondary">&nbsp;Register Here?</Link></p>
     </form>
   </Grid>
   </Paper>
+  <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+    <CustomSnackBar onClose={handleClose} severity="error">
+      You haven't verified your email address!
+    </CustomSnackBar>
+  </Snackbar>
   </Container>
   </div>
   );
 }
 
-export default Login;
+export default compose(withRouter, withFirebase)(LoginComponent);

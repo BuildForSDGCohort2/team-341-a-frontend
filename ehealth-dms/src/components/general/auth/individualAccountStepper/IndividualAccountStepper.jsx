@@ -108,7 +108,7 @@ const IndividualAccountStepper = (props) => {
   return ( 
     <Container fixed maxWidth="lg">
       <Stepper alternativeLabel activeStep={props.activeStep} className={classes.iStepperBackground} connector={<ColorlibConnector />}>
-        {steps.map((label) => (
+        {props.steps.map((label) => (
           <Step key={label}>
             <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
           </Step>

@@ -6,6 +6,7 @@ import {
     MenuItem,
     ListItemText
 } from '@material-ui/core';
+import { withFirebase  } from '../../../firebase';
 
 const StyledMenu = withStyles({
   paper: {
@@ -33,7 +34,14 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-export function CustomizedMenus(props) {
+export const CustomizedMenus = withFirebase(props => {
+
+  const signOut = () => {
+    props.firebase.signOut()
+    .then((res) =>{
+      props.handleClose();
+    })
+  };
 
   return (
     <div>
@@ -46,7 +54,7 @@ export function CustomizedMenus(props) {
       >
     {props.listItems.map((item, key) => {
         return <dt  key={key}>
-        <StyledMenuItem onClick={props.handleClose}>
+        <StyledMenuItem onClick={item.text === "Logout" ? signOut : props.handleClose}>
           <Icon style={{ color: item.color, paddingRight: 8 }}>{item.icon}</Icon>
             <ListItemText><span>{item.text}</span></ListItemText>
         </StyledMenuItem>
@@ -55,4 +63,4 @@ export function CustomizedMenus(props) {
       </StyledMenu>
     </div>
   );
-}
+});

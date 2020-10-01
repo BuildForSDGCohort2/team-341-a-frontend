@@ -1,4 +1,4 @@
-import {EhealthLayout, LegalEntityAccountComponent, IndividualAccount, Login, ResetPassword} from "components";
+import {EhealthLayout, LegalEntityAccountComponent, IndividualAccount, Login, ResetPassword, EmailConfirmation} from "components";
 
 var indexRoutes = [
   { path: "/app", name: "Dashboard", component: EhealthLayout },
@@ -6,6 +6,7 @@ var indexRoutes = [
   { path: "/login", name: "Login", component: Login },
   { path: "/individual-account", name: "Iaccounts", component: IndividualAccount },
   { path: "/reset-password", name: "Reset", component: ResetPassword },
+  { path: "/confirm-email", name: "ConfirmEmail", component: EmailConfirmation },
 ];
 
 export default indexRoutes;
