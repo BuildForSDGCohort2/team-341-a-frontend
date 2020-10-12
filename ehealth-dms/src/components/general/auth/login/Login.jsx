@@ -63,11 +63,10 @@ function LoginComponent(props) {
       .then((data) => {
         if (data.user.emailVerified) {
           setValues(initState);
-          localStorage.removeItem('eHealthUser');
           props.history.push('/app');
           setIsCommiting(false);
         } else {
-          setOpen(true);
+          setOpen(true);          
           setIsCommiting(false);
         }
       })
@@ -177,7 +176,7 @@ function LoginComponent(props) {
       {values.error && <p className="error-text">{values.error.message}</p>}
       {isCommiting && <LinearProgress /> }
       <hr/>
-      <p className="login-toggler">Dont have an account?<Link underline="none" href="/individual-account" color="secondary">&nbsp;Register Here?</Link></p>
+      <p className="login-toggler">Don't have an account?<Link underline="none" href="/individual-account" color="secondary">&nbsp;Register Here?</Link></p>
     </form>
   </Grid>
   </Paper>

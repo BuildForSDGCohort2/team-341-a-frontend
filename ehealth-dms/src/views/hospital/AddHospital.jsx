@@ -8,27 +8,13 @@ import Link from '@material-ui/core/Link';
 import { CustomInputs, CustomSelect } from "../../components/general/customStyles/CustomStyles"
 
 
-export default function AddHospital() {
+export default function AddHospital(props) {
   const countryList = countries.map((item, i) => {
     return item.country
   });
-  const initFormData =     {
-    country: '',
-    state: '',
-    city: '',
-    }
   const classes = Usestyles();
   const [provinceList, setProvinceList] = useState([]);
-  const [formData, setFormData] = useState(initFormData);
-  const [checked, setChecked] = useState(false);
 
-  const handleFormValueChange = ({ target: { name, value } }) => {
-    let newValue = name === "contact" ? value.trim().replace(/\s+/g, "") : value;
-    setFormData((s) => ({
-      ...s,
-      [name]: newValue,
-    }));
-  };
   useEffect(() => {
     const provinceOptionsForCountry = (country) => {
       let plist = [];
@@ -41,19 +27,9 @@ export default function AddHospital() {
       });
       return plist;
     };
-    setProvinceList(provinceOptionsForCountry(formData.country));
-  }, [formData.country]);
+    setProvinceList(provinceOptionsForCountry(props.country));
+  }, [props.country]);
 
-  useEffect(() => {
-    setFormData((s) => ({
-      ...s,
-      city: "",
-    }));
-  }, [formData.state]);
-
-  const handleCheckChanged = (e) => {
-    setChecked(e.target.checked);
-  };
   return (
 <div className={classes.formPaper}>
     <Avatar className={classes.avatar}>
@@ -68,8 +44,11 @@ export default function AddHospital() {
         <CustomInputs
           id="hname"
           label="Hospital name"
-          name="hospitalname"
+          name="hospitalName"
           type="text"
+          value={props.hospitalName}
+          onChange={props.handleFormValueChange}
+          error={(props.isDirty && !props.hospitalName) ? true : false}
           />
         </Grid>
         <Grid item xs={12}>
@@ -78,6 +57,9 @@ export default function AddHospital() {
         label="Contact Person"
         name="contactPerson"
         type="text"
+        value={props.contactPerson}
+        onChange={props.handleFormValueChange}
+        error={(props.isDirty && !props.contactPerson) ? true : false}
         />
         </Grid>
         <Grid item xs={12}>
@@ -86,28 +68,33 @@ export default function AddHospital() {
           label="Emergency Contact number"
           name="contact"
           type="text"
+          value={props.contact}
+          onChange={props.handleFormValueChange}
+          error={(props.isDirty && !props.contact) ? true : false}
         />
         </Grid>
     <Grid item xs={12}>
       <CustomSelect 
-        value={formData.country}
-        onChange={handleFormValueChange}
+        value={props.country}
+        onChange={props.handleFormValueChange}
         label="Country"
         options={countryList}
         defaultValue="Select Country"
         name= 'country'
         id='country'
+        error={(props.isDirty && !props.country) ? true : false}
       />
       </Grid>
       <Grid item xs={12}>
         <CustomSelect 
-          value={formData.state}
-          onChange={handleFormValueChange}
+          value={props.state}
+          onChange={props.handleFormValueChange}
           label="State"
           options={provinceList}
           defaultValue="Select State"
           name= 'state'
           id='state'
+          error={(props.isDirty && !props.state) ? true : false}
         />
         </Grid>
         <Grid item xs={12}>
@@ -118,6 +105,9 @@ export default function AddHospital() {
          type="text"
          placeholder="Use key words-Eg: Midwifery, Stroke, Hypothermia, etc"
          multiline={true}
+         value={props.services}
+         onChange={props.handleFormValueChange}
+         error={(props.isDirty && !props.services) ? true : false}
         />
         </Grid>
         <Grid item xs={12}>
@@ -126,17 +116,18 @@ export default function AddHospital() {
           label="City"
           name="city"
           type="text"
-          value={formData.city}
-          onChange={handleFormValueChange}
+          value={props.city}
+          onChange={props.handleFormValueChange}
+          error={(props.isDirty && !props.city) ? true : false}
         />
        <p className="login-individual">An individual? <Link underline="none" href="/individual-account" color="secondary">&nbsp;Create Account here</Link></p>
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            className={classes.checkboxLabel}
+            className={(props.isDirty && !props.checked) ? "generic-error-text" : classes.checkboxLabel}
             defaultChecked
-            control={<Checkbox value="agree" checked={checked}
-            onChange={handleCheckChanged} />}
+            control={<Checkbox value="agree" checked={props.checked}
+            onChange={props.handleCheckChanged} />}
             label= 'By continuing, I agree to Terms of Service and Privacy Policy'
           />
         </Grid>

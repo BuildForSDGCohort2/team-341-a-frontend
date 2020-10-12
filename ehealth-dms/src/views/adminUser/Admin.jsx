@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar/Avatar';
 import Typography from '@material-ui/core/Typography/Typography';
 import { Usestyles } from 'components';
@@ -15,34 +15,10 @@ import { CustomInputs } from '../../components/general/customStyles/CustomStyles
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 
-class AdminUser extends Component {
-  render() {
-    return (
-      <>
-        <AddAdminUser />
-      </>
-    );
-  }
-}
-
-function AddAdminUser() {
+export default function AdminUser(props) {
   const classes = Usestyles();
-  const [values, setValues] = React.useState({
-    fullname: '',
-    email: '',
-    password: '',
-    phone: '',
-    showPassword: false,
-  });
-  const [checked, setChecked] = React.useState(true);
-
-  const handleChange = (prop) => (e) => {
-    setValues({ ...values, [prop]: e.target.value });
-  };
-
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
+ 
+  const [checked, setChecked] = useState(true);
 
   const handleMouseDownPassword = (e) => {
     e.preventDefault();
@@ -67,6 +43,9 @@ function AddAdminUser() {
               label="Email Address"
               name="email"
               type="email"
+              value={props.email}
+              onChange={props.handleChange}
+              error={(props.isDirty && !props.email) ? true : false}
             />
             </Grid>
             <Grid item xs={12}>
@@ -74,18 +53,20 @@ function AddAdminUser() {
                   <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                   <OutlinedInput
                       id="outlined-adornment-password"
-                      type={values.showPassword ? 'text' : 'password'}
-                      value={values.password}
-                      onChange={handleChange('password')}
+                      type={props.showPassword ? 'text' : 'password'}
+                      value={props.password}
+                      name="password"
+                      onChange={props.handleChange}
+                      error={(props.isDirty && !props.password) ? true : false}
                       endAdornment={
                       <InputAdornment position="end">
                           <IconButton
                           aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
+                          onClick={props.handleClickShowPassword}
                           onMouseDown={handleMouseDownPassword}
                           edge="end"
                           >
-                          {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                          {props.showPassword ? <Visibility /> : <VisibilityOff />}
                           </IconButton>
                       </InputAdornment>
                       }
@@ -99,6 +80,11 @@ function AddAdminUser() {
               label="Confirm Password"
               name="confirmPassword"
               type="password"
+              value={props.confirmPassword}
+              onChange={props.handleChange}
+              error={props.passwordMatched}
+              fieldBlur={props.handlePasswordMatched}
+              errorText={props.passwordMatched ? 'Password mismatched!' : null}
             />
             </Grid>
             <Grid item xs={12}>
@@ -115,5 +101,3 @@ function AddAdminUser() {
       </div>
   );
 }
-
-export default AdminUser;

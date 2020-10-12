@@ -35,7 +35,7 @@ function EhealthLayout(props) {
         ? setAuthUser(user)
         : setAuthUser(null);
     });
-  }, [authUser]);
+  }, [props.firebase.auth]);
 
     return (
       <div

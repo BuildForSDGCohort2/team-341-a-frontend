@@ -1,12 +1,14 @@
 import React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import { purple } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField/TextField';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
+import Grid from '@material-ui/core/Grid';
+import Tooltip from '@material-ui/core/Tooltip';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const theme = createMuiTheme({
   palette: {
@@ -99,6 +101,7 @@ export function CustomSelect(props) {
         id={props.id}
         name={props.name}
         select
+        error={props.error}
       >
         <MenuItem value="" disabled>
           <em>{props.defaultValue}</em>
@@ -117,5 +120,31 @@ export function CustomTypography(props) {
       {props.text}
     </WhiteTextTypography>
     </>
+  );
+}
+
+export function CustomTooltip(props) {
+  return (
+    <div>
+      <Grid container justify="center">
+        <Grid item>
+            {/* <ClickAwayListener onClickAway={props.handleTooltipClose}>
+              <div> */}
+                <Tooltip
+                  PopperProps={{
+                    disablePortal: true,
+                  }}
+                  onClose={props.handleTooltipClose}
+                  open={props.open}
+                  disableFocusListener
+                  disableHoverListener
+                  disableTouchListener
+                  title={props.text}
+                />
+              {/* </div>
+            </ClickAwayListener> */}
+          </Grid>
+      </Grid>
+    </div>
   );
 }

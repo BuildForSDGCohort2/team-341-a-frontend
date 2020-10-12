@@ -25,7 +25,7 @@ import { compose } from 'recompose';
 function getSteps() {
   return ['Create Account', 'Confirm Email'];
 }
-const userData = JSON.parse(localStorage.getItem('eHealthUser'));
+
 function IndividualAccount(props) {
   const countryList = countries.map((item, i) => {
     return item.country
@@ -41,6 +41,8 @@ function IndividualAccount(props) {
     country: '',
     state: '',
     city: '',
+    isAdmin: false,
+    dob: '',
     error: null
     }
   const classes = Usestyles();
@@ -65,15 +67,22 @@ function IndividualAccount(props) {
     }
   };
   useEffect(() => {
+    if (props.location.state.isAdminUser) {
+      setActiveStep(1);
+      setUser({email: props.location.state.isAdminUser.email});
+    } else {
     props.firebase.auth.onAuthStateChanged(user => {
       if (user) {
-        user.emailVerified
-        ? props.history.push('/')
-        : setActiveStep(1);
-        setUser({email: user.email});
+        if (user.emailVerified)
+        props.history.push('/')
+        else {
+          setActiveStep(1);
+           setUser({email: user.email});
+        }
       }
     })
-  },[user.email])
+  }
+  },[props.location.state.isAdminUser, props.firebase.auth]);
 
   useEffect(() => {
     const provinceOptionsForCountry = (country) => {

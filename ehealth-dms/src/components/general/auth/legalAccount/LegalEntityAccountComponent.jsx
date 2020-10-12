@@ -19,7 +19,7 @@ export default function LegalEntityAccountComponent(props) {
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if (activeStep === 2) {
-      // props.history.push('/app');
+
     }
   };
 

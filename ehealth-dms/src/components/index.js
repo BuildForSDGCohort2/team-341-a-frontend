@@ -18,6 +18,8 @@ import IndividualAccount from './general/auth/accounts/IndividualAccount';
 import Login from './general/auth/login/Login';
 import EmailConfirmation from './general/auth/emailConfirmation/EmailConfirmation';
 import ResetPassword from './general/auth/forgotPassword/ResetPassword';
+// import withFirebase from '../firebase/index';
+
 export {
     EhealthLayout,
     Footer,
