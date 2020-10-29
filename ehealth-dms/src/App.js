@@ -7,6 +7,7 @@ import { Login } from "components";
 
 import indexRoutes from "./routes/index.jsx";
 import { Spinner } from "./components";
+import Landing from "./components/general/Landing/Landing";
 
 function App(props) {
 
@@ -25,7 +26,7 @@ function App(props) {
             );
           })}
         </Switch>
-        <Route exact path="/" component={Login} />
+        <Route exact path="/" component={Landing} />
       </Router>
     </>
   );
