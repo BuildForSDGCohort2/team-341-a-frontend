@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import {
   AppBar,
@@ -25,23 +25,29 @@ export default function Header(props) {
   console.log("###:", props);
   return (
     <AppBar
-      position="sticky"
+      position="fixed"
       className={clsx(classes.appBar, classes.background, {
         [classes.appBarShift]: props.openDrawer,
       })}
     >
       <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={props.onDrawerOpen}
-          edge="start"
-          className={clsx(classes.menuButton, {
-            [classes.hide]: props.openDrawer,
-          })}
-        >
-          {props.isOnHome ? "" : <MenuIcon />}
-        </IconButton>
+        {props.isOnHome ? (
+          ""
+        ) : (
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={props.onDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: props.openDrawer,
+            })}
+          >
+            {" "}
+            <MenuIcon />
+          </IconButton>
+        )}
+
         {props.isOnHome ? <Avatar className={classes.logo}>H</Avatar> : ""}
         <Typography className={classes.title} variant="h5" noWrap>
           cares
@@ -50,8 +56,7 @@ export default function Header(props) {
           <StyledInput
             placeholder="Search…"
             classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
+              root: classes.inputRoot
             }}
             startAdornment={
               <InputAdornment position="start">
@@ -63,12 +68,19 @@ export default function Header(props) {
         </div>
         <div className={classes.grow} />
         <div className={classes.sectionDesktop}>
-          <StyledButton className={classes.btnDefault} linkto="/login">
-            Login
-          </StyledButton>
-          <StyledButton className={classes.btnPrimary} linkto="/individual-account">
-            Register
-          </StyledButton>
+          {!props.isLoggedIn && (
+            <>
+              <StyledButton className={classes.btnDefault} linkto="/login">
+                Login
+              </StyledButton>
+              <StyledButton
+                className={classes.btnPrimary}
+                linkto="/individual-account"
+              >
+                Register
+              </StyledButton>
+            </>
+          )}
           {props.isOnHome && props.isLoggedIn && (
             <>
               <IconButton

@@ -6,7 +6,13 @@ import StyledButton from "components/common/composables/Button";
 import Usestyles from "components/general/settings/Usestyles";
 import hero from "assets/images/hero-illus.png";
 import element from "assets/images/element.png";
+import bgElement from "assets/images/bg_element.png";
 import searchDoc from "assets/images/search-doc.png";
+import pharma from "assets/images/pharma.png";
+import consult from "assets/images/consult.png";
+import details from "assets/images/details.png";
+import track from "assets/images/track.png";
+import emergency from "assets/images/emergency.png";
 import provider from "assets/images/providers.png";
 import "./Landing.scss";
 import Carousel from "../Carousel/Carousel";
@@ -21,6 +27,15 @@ class Landing extends Component {
     super(props);
     this.state = { isOnHome: true, isLoggedIn: false };
   }
+
+  componentDidMount() {
+    this.setState({ isLoggedIn: false });
+  }
+
+  componentWillUnmount() {
+    this.setState({ isOnHome: false, isLoggedIn: true });
+  }
+
   render() {
     return (
       <div>
@@ -43,11 +58,16 @@ function Hero() {
         className="HeroContainer"
         container
         justify="space-evenly"
-        alignItems="flex-start"
+        alignItems="center"
       >
-        {/* <img src={element} className="Element" alt="" srcSet="" /> */}
+        <img src={element} className="Element" alt="" srcSet="" />
         <Grid item>
-          <Typography className="HeroText" variant="h2" gutterBottom>
+          <Typography
+            classes={{ root: classes.heroText }}
+            className="HeroText"
+            variant="h2"
+            gutterBottom
+          >
             Virtual healthcare for you
           </Typography>
           <Typography className="HeroText" variant="body1" gutterBottom>
@@ -76,44 +96,43 @@ function OurServices() {
     },
     {
       id: 2,
-      name: "Search Doctor",
+      name: "Online pharmacy",
       details:
-        "You Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius veniam rerum voluptates aperiam dolorum hic.",
-      icon: searchDoc,
+        "Buy  your medicines with our mobile application with a simple delivery system",
+      icon: pharma,
     },
     {
       id: 3,
-      name: "Search Doctor",
+      name: "Consultation",
       details:
-        "You Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius veniam rerum voluptates aperiam dolorum hic.",
-      icon: searchDoc,
+        "Free consultation with our trusted doctors and get the best recomendations",
+      icon: consult,
     },
     {
       id: 4,
-      name: "Search Doctor",
+      name: "Details info",
       details:
-        "You Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius veniam rerum voluptates aperiam dolorum hic.",
-      icon: searchDoc,
+        "Free consultation with our trusted doctors and get the best recomendations",
+      icon: details,
     },
     {
       id: 5,
-      name: "Search Doctor",
+      name: "Emergency care",
       details:
-        "You Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius veniam rerum voluptates aperiam dolorum hic.",
-      icon: searchDoc,
+        "You can get 24/7 urgent care for yourself or your children and your lovely family",
+      icon: emergency,
     },
     {
       id: 6,
-      name: "Search Doctor",
-      details:
-        "You Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius veniam rerum voluptates aperiam dolorum hic.",
-      icon: searchDoc,
+      name: "Tracking",
+      details: "Track and save your medical history and health data",
+      icon: track,
     },
   ];
   return (
     <>
       <Grid
-        className="HeroContainer"
+        className="ServicesContainer"
         container
         direction="column"
         justify="center"
@@ -140,14 +159,16 @@ function OurServices() {
         >
           {services.map((service) => (
             <Grid key={service.id} item>
-              <Card className="Card">
+              <Card className="Card" elevation={5}>
                 <CardContent>
-                  <img
-                    src={service.icon}
-                    className="CardIcon"
-                    alt=""
-                    srcSet=""
-                  />
+                  <div className="WrapIcon">
+                    <img
+                      src={service.icon}
+                      className="CardIcon"
+                      alt=""
+                      srcSet=""
+                    />
+                  </div>
                   <Typography variant="h6">{service.name}</Typography>
                   <Typography variant="body2" className="CardText">
                     {service.details}
@@ -158,6 +179,7 @@ function OurServices() {
           ))}
         </Grid>
         <StyledButton className={classes.btnSecondary}>Learn More</StyledButton>
+        <img src={bgElement} className="Element" alt="" srcSet="" />
       </Grid>
     </>
   );
@@ -177,7 +199,12 @@ function Provider() {
           <img src={provider} className="Image" alt="" srcSet="" />
         </Grid>
         <Grid item>
-          <Typography className="HeroText" variant="h2" gutterBottom>
+          <Typography
+            classes={{ root: classes.heroText }}
+            className="HeroText"
+            variant="h2"
+            gutterBottom
+          >
             Leading healthcare providers
           </Typography>
           <Typography className="HeroText" variant="body1" gutterBottom>
@@ -209,7 +236,12 @@ function Footer() {
           <Grid item>
             <div className="FooterLogo mr2">
               <Avatar className={classes.logo}>H</Avatar>
-              <Typography className={classes.title} variant="h5" noWrap>
+              <Typography
+                style={{ paddingTop: 2 }}
+                className={classes.title}
+                variant="h5"
+                noWrap
+              >
                 cares
               </Typography>
             </div>
