@@ -14,7 +14,7 @@ export default class Carousel extends React.Component {
     };
     return (
       <>
-        <Grid container justify="center">
+        <Grid className="SliderContainer" container justify="center">
           <div>
             <Slider className="container" {...settings}>
               <div>

@@ -43,7 +43,7 @@ const Usestyles = makeStyles((theme) => ({
     borderColor: `${hBlue} !important`,
     fontWeight: "bold",
     borderRadius: 56,
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(3),
     marginBottom: theme.spacing(1),
     background: hBlue,
     "&:hover": {
@@ -360,6 +360,9 @@ const Usestyles = makeStyles((theme) => ({
   },
   mt8: {
     marginTop: 64
+  },
+  heroText: {
+    fontWeight: 700
   }
 }));
 

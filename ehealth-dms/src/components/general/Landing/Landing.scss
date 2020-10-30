@@ -10,6 +10,12 @@
 
 .CardIcon {
   padding: 24px;
+  padding-left: 0;
+}
+
+.WrapIcon {
+    margin-bottom: 16px;
+    height: 10vw;
 }
 
 .Card {
@@ -35,37 +41,45 @@
 .HeroContainer {
   padding-top: 80px;
   padding-bottom: 112px;
+  background-size: cover;
+  background: url(../../../assets/images/element.png) no-repeat;
+}
+.ServicesContainer {
+  padding-top: 80px;
+  padding-bottom: 112px;
+  background: url(../../../assets/images/vector_bg.png) no-repeat;
+  background-size: contain;
+  position: relative;
 }
 
 .Element {
-  position: fixed;
-  left: 0;
+  position: absolute;
+  right: 300px;
+  z-index: -1;
 }
 
 .Footer {
   background: linear-gradient(183.41deg, #67c3f3 -8.57%, #5a98f2 82.96%);
   padding: 88px;
-//   height: 100px;
   color: #fff;
-  margin-top: 100px;
 }
 
 .FooterLogo {
-    display: flex;
+  display: flex;
 }
 
 .FooterText {
-    max-width: 400px;
+  max-width: 400px;
 }
 
 .List {
-    padding-left: 0;
+  padding-left: 0;
 }
 
-.mr2 { 
-    margin-bottom: 16px;
+.mr2 {
+  margin-bottom: 16px;
 }
 
 .mr3 {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
