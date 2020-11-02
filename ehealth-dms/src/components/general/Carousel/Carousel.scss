@@ -4,8 +4,35 @@
   width: 90vw;
   height: 425px;
   border-radius: 24px;
+  text-align: center;
+  
 }
 
 .SliderContainer {
     padding-bottom: 112px;
+}
+
+.img {
+    margin: 8px auto;
+}
+
+.hr {
+    width: 56px    ;
+    height: 4px    ;
+    background: #FFFFFF;
+    border-radius: 6px;
+}
+
+.SlideAvatar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.MuiTypography-subtitle1 {
+    width: 380px;
+}
+
+.contain {
+margin-top: 100px;
 }

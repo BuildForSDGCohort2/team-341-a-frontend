@@ -363,7 +363,11 @@ const Usestyles = makeStyles((theme) => ({
   },
   heroText: {
     fontWeight: 700
-  }
+  },
+  large: {
+    width: theme.spacing(10),
+    height: theme.spacing(10),
+  },
 }));
 
 export default Usestyles;
