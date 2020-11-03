@@ -20,7 +20,7 @@ export default class Carousel extends React.Component {
     return (
       <>
         <Grid className="SliderContainer" container>
-          <Slider className="container" {...settings}>
+          <Slider className="slider" {...settings}>
             {[1, 2, 3].map((el, index) => (
               <SliderContent key={el} />
             ))}
@@ -33,40 +33,39 @@ export default class Carousel extends React.Component {
 
 function SliderContent(props) {
   return (
+    <Grid container direction="column" justify="center" alignItems="center">
+      <Grid className="contain" item>
+        <Typography className="" variant="h4" gutterBottom>
+          What our customer are saying
+        </Typography>
+        <hr className="hr" />
+      </Grid>
       <Grid
         container
-        direction="column"
-        justify="space-between"
+        item
+        direction="row"
+        justify="space-around"
         alignItems="center"
       >
-        <Grid item>
-          <Typography className="" variant="h4" gutterBottom>
-            What our customer are saying
-          </Typography>
-          <hr className="hr" />
-        </Grid>
-        <Grid
-          container
-          item
-          direction="row"
-          justify="space-evenly"
-          alignItems="center"
-        >
-          <Grid item className="SlideAvatar">
+        <Grid item alignItems="center" container lg={6} className="SlideAvatar">
+          <Grid item>
             <SlideAvatar></SlideAvatar>
+          </Grid>
+          <Grid item style={{ paddingLeft: "16px" }}>
             <Typography variant="subtitle2">
               Edward Newgate Founder Circle
             </Typography>
           </Grid>
-          <Grid item>
-            <Typography variant="subtitle1">
-              “Our dedicated patient engagement app and web portal allow you to
-              access information instantaneously (no tedeous form, long calls,
-              or administrative hassle) and securely”
-            </Typography>
-          </Grid>
+        </Grid>
+        <Grid item lg={6}>
+          <Typography variant="subtitle1">
+            “Our dedicated patient engagement app and web portal allow you to
+            access information instantaneously (no tedeous form, long calls, or
+            administrative hassle) and securely”
+          </Typography>
         </Grid>
       </Grid>
+    </Grid>
   );
 }
 

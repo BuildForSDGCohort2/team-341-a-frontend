@@ -230,10 +230,10 @@ function Footer() {
         <Grid
           container
           direction="row"
-          justify="space-evenly"
+          justify="space-between"
           alignItems="flex-start"
         >
-          <Grid item>
+          <Grid item xs={6} sm={4} lg={5}>
             <div className="FooterLogo mr2">
               <Avatar className={classes.logo}>H</Avatar>
               <Typography
@@ -253,19 +253,19 @@ function Footer() {
               ©Hcares PLC LTD 2020. All rights reserved
             </Typography>
           </Grid>
-          <Grid item>
+          <Grid item xs={6} sm={3} lg={2}>
             <Typography variant="subtitle1" noWrap>
               Company
             </Typography>
             {coItems.map((item) => (
-              <List key={item} dense>
+              <List key={item}>
                 <ListItem className={classes.list}>
                   <ListItemText primary={item} />
                 </ListItem>
               </List>
             ))}
           </Grid>
-          <Grid item>
+          <Grid item xs={6} sm={3} lg={2}>
             <Typography variant="subtitle1" noWrap>
               Region
             </Typography>
@@ -277,7 +277,7 @@ function Footer() {
               </List>
             ))}
           </Grid>
-          <Grid item>
+          <Grid item xs={6} sm={3} lg={2}>
             <Typography variant="subtitle1" noWrap>
               Help
             </Typography>
